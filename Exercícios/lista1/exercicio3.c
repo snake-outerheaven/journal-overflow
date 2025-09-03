@@ -6,13 +6,6 @@ Observação: Salário não pode ser negativo ou nulo
 
 Versão em Portugol:
 
-/* Objetivo: fazer um algoritmo que receba o salário de um funcionário e mostre
-   o seu novo salário acrescido de 25%
-
-   Observação: Salário não pode ser negativo ou nulo
-
-   Versão em portugol
-
    INICIO
    float s1 = 0, s2 = 0;
 
