@@ -28,7 +28,6 @@
 
 int main(void) {
   float peso = 0, altura = 0, imc = 0;
-
   do {
     printf("Por favor, digite o peso e a altura do paciente (escrever da "
            "seguinte maneira: 'peso altura', com espaço entre os valores)\n: ");
@@ -36,4 +35,5 @@ int main(void) {
   } while (peso <= 0 || altura <= 0);
   imc = peso / (altura * altura);
   printf("O imc do paciente é %.2f", imc);
+  return 0;
 }
