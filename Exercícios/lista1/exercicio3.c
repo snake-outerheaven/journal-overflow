@@ -6,16 +6,25 @@ Observação: Salário não pode ser negativo ou nulo
 
 Versão em Portugol:
 
-INICIO
-    float s1 = 0, s2 = 0;
+/* Objetivo: fazer um algoritmo que receba o salário de um funcionário e mostre
+   o seu novo salário acrescido de 25%
 
-    faça {
-        imprimir("Digite o salário do funcionário para gerar o novo salário com
-aumento de 25%: "); ler("%f", s1); } enquanto (s1 <= 0);
+   Observação: Salário não pode ser negativo ou nulo
 
-    s2 = s1 * 1.25;
-    imprimir("O novo salário do funcionário é: %f\n", s2);
-FIM
+   Versão em portugol
+
+   INICIO
+   float s1 = 0, s2 = 0;
+
+   faça {
+     imprimir("Digite o salário do funcionário para gerar o novo salário com
+   aumento de 25%: ");
+   ler("%f", s1);
+   } enquanto (s1 <= 0);
+   s2 = s1 * 1.25;
+   imprimir("O novo salário do funcionário é: %f\n", s2);
+   FIM
+
 */
 
 // Implementação em C
