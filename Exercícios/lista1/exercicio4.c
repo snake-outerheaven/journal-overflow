@@ -50,6 +50,16 @@
 #define IS_DIR(mode) S_ISDIR(mode)
 #endif
 
+void limpar_tela(void) {
+#ifdef _WIN32
+  system("cls");
+#elif __linux__
+  system("clear");
+#else
+  printf("\033[2J\033[H");
+#endif
+}
+
 void wait(unsigned int time) {
 #ifdef __linux__
   usleep(time * 1000);
@@ -61,7 +71,7 @@ void wait(unsigned int time) {
 void trim(char *str) {
   int end = (int)strlen(str) - 1;
   int start = 0;
-  int i = 0;
+  size_t len = 0;
 
   while (start <= end && isspace((unsigned char)str[start]))
     start++;
@@ -69,10 +79,13 @@ void trim(char *str) {
   while (end >= start && isspace((unsigned char)str[end]))
     end--;
 
-  while (start <= end)
-    str[i++] = str[start++];
+  len = end - start + 1; // abc\0 <- pega a posição para colocar o \0
 
-  str[i] = '\0';
+  memmove(str, str + start,
+          len); // <- função de string.h que serve para manipular bytes.
+                //    essa função move bytes internamente em um array
+                //    por mover bytes, serve para array de qualquer tipo
+  str[len] = '\0';
 }
 
 int salvar(const char *nome, float *s1, float *a1, float *s2) {
@@ -163,8 +176,13 @@ int main(void) {
     s1 = 0.0;
     a1 = 0.0;
 
+    limpar_tela();
     printf("\n");
     wait(750);
+
+    printf("Bem vindo administrador, por favor, aguarde...");
+
+    wait(900);
 
     printf("Digite o nome do funcionário a receber o aumento. (máximo de 100 "
            "caracteres)\n: ");
