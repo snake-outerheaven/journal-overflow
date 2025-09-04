@@ -5,6 +5,5 @@
 
 ## Como vai ser cada arquivo
 
-    Cada exercício terá sua versão resolvida tanto como código C quanto portugol (com sotaque C).
+    Cada exercício terá uma implementação em C, com o portugol para auxiliar na elaboração do sistema.
 
-    A versão em portugol estará no final de cada arquivo fonte, em um bloco de comentário /**/
