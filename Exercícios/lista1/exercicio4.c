@@ -156,7 +156,6 @@ int verify_trun(char *str, size_t bufsize) {
 int main(void) {
   char nome[100], buffer[15], *endptr;
   float s1, a1, s2;
-  size_t len;
 
   do {
     nome[0] = '\0';
