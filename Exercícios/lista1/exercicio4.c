@@ -81,10 +81,8 @@ void trim(char *str) {
 
   len = end - start + 1; // abc\0 <- pega a posição para colocar o \0
 
-  memmove(str, str + start,
-          len); // <- função de string.h que serve para manipular bytes.
-                //    essa função move bytes internamente em um array
-                //    por mover bytes, serve para array de qualquer tipo
+  memmove(str, str + start, len);
+
   str[len] = '\0';
 }
 
