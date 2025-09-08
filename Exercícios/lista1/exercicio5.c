@@ -116,7 +116,7 @@ void wait(unsigned short int time) {
 }
 
 void trim(char *str) {
-  size_t end = (short int)strlen(str) - 1;
+  size_t end = strlen(str) - 1;
   size_t start = 0;
   size_t len = 0;
 
