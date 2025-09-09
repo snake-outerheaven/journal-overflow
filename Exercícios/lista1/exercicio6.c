@@ -12,7 +12,7 @@ int main(void) {
     printf("Digite o salário do funcionario: ");
     fgets(numbuf, sizeof(numbuf), stdin);
 
-    if (sscanf(numbuf, "%f", &salario) != 1) {
+    if (!sscanf(numbuf, "%f", &salario)) {
       printf("Entrada inválida\n");
       continue;
     }
