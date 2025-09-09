@@ -25,7 +25,7 @@ int main(void) {
     printf("Digite o preço do carro (digite 0 para sair).\n: ");
     fgets(buf, sizeof(buf), stdin);
     trim(buf);
-    if (converter(buf, &preco) == -1)
+    if (!converter(buf, &preco))
       continue;
 
     if (preco == 0.0F) {
@@ -38,7 +38,7 @@ int main(void) {
            "sem o %%)\n: ");
     fgets(buf, sizeof(buf), stdin);
     trim(buf);
-    if (converter(buf, &impostos) == -1)
+    if (!converter(buf, &impostos))
       continue;
 
     printf(
@@ -46,7 +46,7 @@ int main(void) {
         "numérica, sem o %%)\n: ");
     fgets(buf, sizeof(buf), stdin);
     trim(buf);
-    if (converter(buf, &comissao) == -1)
+    if (!converter(buf, &comissao))
       continue;
 
     float preco_final =
@@ -65,9 +65,9 @@ int converter(char *str, float *x) {
     wait_posix(250);
     printf("Falha na conversão.");
     wait_posix(250);
-    return -1;
+    return 0;
   }
-  return 0;
+  return 1;
 }
 
 void trim(char *str) {
