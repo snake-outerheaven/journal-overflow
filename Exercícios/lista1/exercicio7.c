@@ -54,7 +54,7 @@ int converter(char *buf, float *valor) {
   if (!sscanf(buf, "%f", valor)) {
     wait_posix(1000);
     printf("Valor inválido!\n");
-    return -1;
+    return 0;
   }
-  return 0;
+  return 1;
 }
