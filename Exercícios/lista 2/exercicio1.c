@@ -42,17 +42,17 @@ int main(void) {
       if (!converter(buf, &lados[i])) {
         continue;
       }
-      printf("Gostaria de confirmar o lado %f? (s/n)\n: ", lados[i]);
+      printf("Gostaria de confirmar o lado %.2f? (s/n)\n: ", lados[i]);
       fgets(respbuf, sizeof(respbuf), stdin);
       trim(respbuf);
       if (strcmp(respbuf, "s") == 0 || strcmp(respbuf, "S") == 0) {
         wait_posix(750);
-        printf("Lado confirmado!\n");
+        puts("Lado confirmado!");
         resp_val = true;
       } else {
         wait_posix(750);
-        printf("Resposta negativa ou inválida digitada! Aguarde para digitar o "
-               "lado novamente.\n");
+        puts("Resposta negativa ou inválida digitada! Aguarde para digitar o "
+             "lado novamente.");
         wait_posix(1000);
         continue;
       }
@@ -63,9 +63,9 @@ int main(void) {
   c = lados[2];
 
   if (!confirm(&a, &b, &c)) {
-    printf("Não é possível fazer o triângulo %f, %f, %f.\n", a, b, c);
+    printf("Não é possível fazer o triângulo %.2f, %.2f, %.2f.\n", a, b, c);
   } else {
-    printf("O triângulo %f, %f, %f existe!\n", a, b, c);
+    printf("O triângulo %.2f, %.2f, %.2f existe!\n", a, b, c);
   }
   return 0;
 }
@@ -90,7 +90,7 @@ void trim(char *buf) {
 int converter(char *str, float *x) {
   if (!sscanf(str, "%f", x)) {
     wait_posix(250);
-    printf("Falha na conversão.");
+    puts("Falha na conversão.");
     wait_posix(250);
     return 0;
   }
