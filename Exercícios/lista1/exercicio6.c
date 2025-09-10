@@ -1,8 +1,12 @@
+#include <ctype.h>
 #include <stdio.h>
+#include <string.h>
 
 // objetivo: receber o salário de um funcionário, calcular o valor total a
 // receber considerando uma gratificação de 500 reais e o pagamento de uma taxa
 // equivalente a 10% do salário total.
+
+void trim(char *str);
 
 int main(void) {
   char numbuf[10];
@@ -11,6 +15,7 @@ int main(void) {
     printf("\n");
     printf("Digite o salário do funcionario: ");
     fgets(numbuf, sizeof(numbuf), stdin);
+    trim(numbuf);
 
     if (!sscanf(numbuf, "%f", &salario)) {
       printf("Entrada inválida\n");
@@ -31,4 +36,18 @@ int main(void) {
   return 0;
 }
 
-// bem simples, depois vou refatorar para ser um sistema mesmo.
+void trim(char *buf) {
+  size_t end = strlen(buf) - 1;
+  size_t start = 0;
+  size_t len = 0;
+
+  while (start < end && isspace(buf[start]))
+    start++;
+
+  while (end > start && isspace(buf[end]))
+    end--;
+
+  len = end - start + 1;
+  memmove(buf, buf + start, len);
+  buf[len] = '\0';
+}

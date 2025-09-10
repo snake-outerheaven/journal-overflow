@@ -36,7 +36,7 @@ int main(void) {
     fgets(buf, sizeof(buf), stdin);
     trim(buf);
     if (converter(buf, &ano_alvo) == -1) {
-        wait_posix(750);
+      wait_posix(750);
       printf("Ano alvo inválido.\n");
       wait_posix(100);
       printf("Aguarde para digitar novamente\n");
@@ -66,7 +66,7 @@ int converter(char *buf, int *ano) {
 }
 
 void trim(char *str) {
-  size_t end = strlen(str);
+  size_t end = strlen(str) - 1;
   size_t start = 0;
   size_t len = 0;
 
@@ -74,11 +74,11 @@ void trim(char *str) {
     start++;
   }
 
-  while (end > start && isspace(str[end - 1])) {
+  while (end > start && isspace(str[end])) {
     end--;
   }
 
-  len = end - start;
+  len = end - start + 1;
   memmove(str, str + start, len + 1);
 }
 

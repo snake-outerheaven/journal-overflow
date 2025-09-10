@@ -45,6 +45,8 @@ int main(void) {
       printf("Gostaria de confirmar o lado %.2f? (s/n)\n: ", lados[i]);
       fgets(respbuf, sizeof(respbuf), stdin);
       trim(respbuf);
+      printf("%s\n", respbuf);
+      wait_posix(3500);
       if (strcmp(respbuf, "s") == 0 || strcmp(respbuf, "S") == 0) {
         wait_posix(750);
         puts("Lado confirmado!");
@@ -73,7 +75,7 @@ int main(void) {
 void wait_posix(unsigned int ms) { usleep(ms * 1000); }
 
 void trim(char *buf) {
-  size_t end = strlen(buf);
+  size_t end = strlen(buf) - 1;
   size_t start = 0;
   size_t len = 0;
 
@@ -83,7 +85,7 @@ void trim(char *buf) {
   while (start <= end && isspace(buf[end]))
     end--;
 
-  len = end - start;
+  len = end - start + 1;
   memmove(buf, buf + start, len);
   buf[len] = '\0';
 }

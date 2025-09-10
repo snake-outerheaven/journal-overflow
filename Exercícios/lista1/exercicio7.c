@@ -1,4 +1,6 @@
+#include <ctype.h>
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 
 // objetivo: receber valor, taxa de juros, tempo, e calcular montante em juros
@@ -9,6 +11,7 @@
 // área dos protótipos das funções.
 void wait_posix(unsigned int seconds);
 int converter(char *buf, float *valor);
+void trim(char *buf);
 
 int main(void) {
   char buf[50] = {""};
@@ -20,6 +23,7 @@ int main(void) {
     wait_posix(750);
     printf("Digite o valor a ser investido: ");
     fgets(buf, sizeof(buf), stdin);
+    trim(buf);
     if (!converter(buf, &valor)) {
       continue;
     }
@@ -31,12 +35,14 @@ int main(void) {
     wait_posix(1000);
     printf("Digite a taxa de juros: ");
     fgets(buf, sizeof(buf), stdin);
+    trim(buf);
     if (!converter(buf, &taxa)) {
       continue;
     }
     wait_posix(1000);
     printf("Digite o tempo em meses: ");
     fgets(buf, sizeof(buf), stdin);
+    trim(buf);
     if (!converter(buf, &tempo)) {
       continue;
     }
@@ -57,4 +63,20 @@ int converter(char *buf, float *valor) {
     return 0;
   }
   return 1;
+}
+
+void trim(char *buf) {
+  size_t end = strlen(buf) - 1;
+  size_t start = 0;
+  size_t len = 0;
+
+  while (end > start && isspace(buf[end]))
+    end--;
+
+  while (start < end && isspace(buf[start]))
+    start++;
+
+  len = end - start + 1;
+  memmove(buf, buf + start, len);
+  buf[len] = '\0';
 }

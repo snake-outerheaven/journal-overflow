@@ -79,7 +79,7 @@ int converter(char *str, float *x) {
 }
 
 void trim(char *str) {
-  size_t end = strlen(str);
+  size_t end = strlen(str) - 1;
   size_t start = 0;
   size_t len = 0;
 
@@ -89,7 +89,7 @@ void trim(char *str) {
   while (end > start && isspace(str[end - 1]))
     end--;
 
-  len = end - start;
+  len = end - start + 1;
   memmove(str, str + start, len);
   str[len] = '\0';
 }

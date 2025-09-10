@@ -66,7 +66,8 @@ int main(void) {
   float s1, s2;
   char *endptr;
 
-  while (1) { // lembra do que eu falei de booleanos, 1 sempre significa verdadeiro, então este é um loop infinito em C
+  while (1) { // lembra do que eu falei de booleanos, 1 sempre significa
+              // verdadeiro, então este é um loop infinito em C
     // Inicializa variáveis
     nome[0] = '\0';
     res[0] = '\0';
@@ -97,11 +98,12 @@ int main(void) {
       fgets(buffer, sizeof(buffer), stdin);
       trim(buffer);
 
-      s1 = strtof(buffer, &endptr); // converte de texto para numero real ( float )
+      s1 = strtof(buffer,
+                  &endptr); // converte de texto para numero real ( float )
 
-      // eu passo de texto para número real para garantir que o número digitado pelo usuário é seguro
-      // para o programa, em C, voce tem que criar todos os algoritmos do 0, então pensar em tudo é
-      // essencial.
+      // eu passo de texto para número real para garantir que o número digitado
+      // pelo usuário é seguro para o programa, em C, voce tem que criar todos
+      // os algoritmos do 0, então pensar em tudo é essencial.
 
       // quando a função falha ela retorna o valor parcial da conversão em um
       // ponteiro( variavel que aponta para um lugar da memória do computador)
@@ -114,9 +116,10 @@ int main(void) {
     }
 
     // Confirmação final de nome e salário
-    printf("Você confirma o nome '%s' e o salário %.2f? (S/N): ", nome, s1); // onde está %s aparece o nome( string )
-                                                                             // e o %f aparece o salário inicial o .2 serve
-                                                                             // para mostrar apenas 2 casas decimais
+    printf("Você confirma o nome '%s' e o salário %.2f? (S/N): ", nome,
+           s1); // onde está %s aparece o nome( string )
+                // e o %f aparece o salário inicial o .2 serve
+                // para mostrar apenas 2 casas decimais
     fgets(res, sizeof(res), stdin);
     trim(res);
 
