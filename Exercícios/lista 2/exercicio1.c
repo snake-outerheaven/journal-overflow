@@ -23,7 +23,7 @@ int main(void) {
   bool resp_val = false;
 
   wait_posix(750);
-  puts("Usuário, este é um programa que recebe tres valores digitados por você "
+  puts("Usuário, este é um programa que recebe três valores digitados por você "
        "e verifica se estes poderiam formar um triângulo.");
 
   wait_posix(500);
@@ -45,8 +45,6 @@ int main(void) {
       printf("Gostaria de confirmar o lado %.2f? (s/n)\n: ", lados[i]);
       fgets(respbuf, sizeof(respbuf), stdin);
       trim(respbuf);
-      printf("%s\n", respbuf);
-      wait_posix(3500);
       if (strcmp(respbuf, "s") == 0 || strcmp(respbuf, "S") == 0) {
         wait_posix(750);
         puts("Lado confirmado!");
