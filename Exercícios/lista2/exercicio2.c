@@ -11,7 +11,7 @@
 // Possíveis situações:
 // aluno está aprovado se a média for maior ou igual a 7.0 e frequencia maior ou
 // igual a 75%, prova final se a media for maior igual a 4 e frequencia maior ou
-// igual a 75%, reprovado se média menor que quatro ou frequencia menor que 75%
+// igual a 75%, reprovado se média menor que 4 ou frequencia menor que 75%
 
 void trim(char *buf);
 void wait(unsigned short ms);
