@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 typedef struct {
-  char name[100];
+  char name[50];
   unsigned short life;
   unsigned short attack;
   unsigned short defense;
@@ -12,7 +12,7 @@ typedef struct {
 } Player;
 
 typedef struct {
-  char name[100];
+  char name[50];
   unsigned short life;
   unsigned short attack;
   unsigned short defense;
