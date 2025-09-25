@@ -31,48 +31,71 @@ int main(void) {
 
   for (int i = 0; i < 20; i++) {
     while (true) {
-      printf("Pessoa %d (ex: 1 25): ", i + 1);
+      buf[0] = '\0';
+      printf(
+          "Pessoa %d (ex: 1 25, onde 1 significa Homem, 0 significa Mulher): ",
+          i + 1);
       if (!fgets(buf, sizeof buf, stdin) || !trim(buf)) {
         puts("Entrada vazia, digite novamente.");
         continue;
       }
       if (sscanf(buf, "%lu %lu", &person[i].sex, &person[i].age) == 2) {
         if (person[i].sex != 0 && person[i].sex != 1) {
+          wait(500);
           puts("Gênero inválido, digite 0 ou 1.");
           continue;
         }
-        printf("Confirmar (S/N)? (Reconhecido: %lu %lu): ", person[i].sex,
+        printf("Confirmar (S/N)? \nPrograma leu: %s | Idade: %lu: ",
+               person[i].sex ? "Gênero Masculino" : "Gênero Feminino",
                person[i].age);
         if (!fgets(buf, sizeof buf, stdin) || !trim(buf)) {
           puts("Entrada vazia, digite novamente.");
           continue;
         }
-        if (!strcmp(buf, "S")) {
+        if (!strcmp(buf, "s") || !strcmp(buf, "S")) {
           printf("Ok, dados da pessoa %d confirmados!\n", i + 1);
           break;
-        } else if (!strcmp(buf, "N")) {
+        } else if (!strcmp(buf, "n") || !strcmp(buf, "N")) {
           puts("Reiniciando entrada dessa pessoa...");
+          wait(500);
+          clear();
           continue;
         } else {
           puts("Entrada inválida, tente de novo.");
+          wait(500);
+          clear();
           continue;
         }
       } else {
         puts("Digite exatamente dois números positivos, separados por espaço.");
+        wait(500);
+        puts("Limpando tela...");
+        wait(500);
+        clear();
+        continue;
       }
     }
     (person[i].sex == 1) ? (male_sum += person[i].age, male_count++)
                          : (female_sum += person[i].age, female_count++);
   }
 
-  puts("\nTabela de valores:");
+  puts("Prosseguindo programa.");
+  wait(1000);
+  clear();
+  puts("\nGerando tabela de indivíduos.");
+  wait(550);
   printf("| Gênero | Idade |\n");
+  wait(500);
   for (int i = 0; i < 20; i++) {
     printf("|   %c    |  %lu  |\n", person[i].sex ? 'M' : 'F', person[i].age);
+    wait(500);
   }
 
   double male_avg = male_count ? (double)male_sum / male_count : 0.0;
   double female_avg = female_count ? (double)female_sum / female_count : 0.0;
+
+  puts("Gerando médias feminina e masculina.");
+  wait(500);
 
   printf("\nMédia Masculina: %.2f\n", male_avg);
   printf("Média Feminina: %.2f\n", female_avg);
@@ -94,7 +117,7 @@ bool trim(char *buf) {
   size_t len = end - start + 1;
   memmove(buf, buf + start, len);
   buf[len] = '\0';
-  return len > 0;
+  return true;
 }
 
 void wait(unsigned short ms) { usleep(1000 * ms); }
