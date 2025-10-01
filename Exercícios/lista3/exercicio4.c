@@ -1,3 +1,8 @@
+/* Faça um algoritmo que lero sexo(1 - M ou 0 - F) a idade (12 a 17)e o esporte
+preferido (1 – Basquete, 2 – Futebol ou 3 – Vôlei) de um grupo de 75 jovens e
+calcule: a média de idade dos jovens que preferem cada esporte e a média das
+idades dos meninos e das meninas. */
+
 #include <ctype.h>
 #include <errno.h>
 #include <float.h>
