@@ -1,2 +1,0 @@
-
-Nome do funcionário: Daniel | Salário inicial: 88.50 | Percentual de aumento: 10.00% | Salário final: 97.35
