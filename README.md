@@ -1,7 +1,5 @@
 # Journal Overflow — Soluções comentadas de K&R (2nd Edition)
 
-<img src="assets/c-logo.svg" alt="C logo azul acinzentado" width="96" style="vertical-align:middle">
-
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)]()
 [![Languages](https://img.shields.io/badge/languages-C-orange.svg)]()
 
