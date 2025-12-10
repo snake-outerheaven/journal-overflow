@@ -14,7 +14,7 @@ void print_pointer(void)
         for (int i = 0; i < 14; i = i + 1) // inicialização do indice ; avaliar se s é verdadeiro valor de uma expressão; incremento do índice
         {
                 printf("%c\n", *ptr); // imprimi o caracter apontado por ptr.
-                ptr = ptr + 1; // aritmética de ponteiros, onde somei  + 1 ao ponteiro para mudar o lugar para onde ele aponta.
+                ptr = ptr + 1;        // aritmética de ponteiros, onde somei  + 1 ao ponteiro para mudar o lugar para onde ele aponta.
         }
 }
 
