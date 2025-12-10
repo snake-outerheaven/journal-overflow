@@ -22,8 +22,8 @@ int main(void)
                         start++;
                 while (start <= end && isspace((unsigned char)buf[end]))
                         end--;
-                int len = end - start + 1;
-                buf[len] = '\0';
+                memmove(buf, buf + start, end - start + 1);
+                buf[end - start + 1] = '\0';
                 printf("You wrote %s.\n", buf);
         }
 }
