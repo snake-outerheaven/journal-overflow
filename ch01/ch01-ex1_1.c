@@ -1,12 +1,6 @@
-#include <ctype.h>  // biblioteca que se refere a texto
 #include <stdio.h>  // biblioteca padrão de entrada e saída
-#include <string.h> // biblioteca de manipulação bruta de memória.
 #include <stdlib.h> // funções de gerenciamento de memória e comuns de C
 #include <time.h>   // biblioteca que cuida de funções temporais
-
-/*
-        Protótipos de funções.
-*/
 
 int main(void)
 {
