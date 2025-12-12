@@ -24,6 +24,6 @@ int main(void)
                         end--;
                 memmove(buf, buf + start, end - start + 1);
                 buf[end - start + 1] = '\0';
-                printf("You wrote %s.\n", buf);
+                printf("You wrote \"%s\".\n", buf);
         }
 }
