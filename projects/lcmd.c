@@ -1,16 +1,19 @@
+#include <Windows.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-int main(void)
+int main()
 {
-        char buf[BUFSIZ];
+        char buf[BUFSIZ], cwd[MAX_PATH];
+
         system("cls");
 
         while (1)
         {
-                printf("C:\\Users\\neo\\workspace> ");
+                GetCurrentDirectoryA(sizeof(cwd), cwd);
+                printf("%s> ", cwd);
                 fflush(stdout);
                 fgets(buf, sizeof(buf), stdin);
                 int end = strlen(buf);
@@ -24,6 +27,20 @@ int main(void)
                         end--;
                 memmove(buf, buf + start, end - start + 1);
                 buf[end - start + 1] = '\0';
-                printf("You wrote \"%s\".\n", buf);
+                if (strncmp(buf, "cd", 2) == 0)
+                {
+                        if (buf[2] == '\0')
+                                printf("%s\n", cwd);
+                        char *path = buf + 3;
+                        if (!SetCurrentDirectoryA(path))
+                                fprintf(stderr, "Failed to switch directories to %s.\n", path);
+                }
+                if (strcmp(buf, "exit") == 0)
+                {
+                        printf("lcmd is shutting off.\n");
+                        Sleep(750);
+                        exit(0);
+                }
         }
+        return 0;
 }
