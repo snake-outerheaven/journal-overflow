@@ -4,6 +4,10 @@
 #include <string.h>
 #include <stdlib.h>
 
+/*
+        TODO: Add cls, dir. type builtins
+ */
+
 int main()
 {
         char buf[BUFSIZ], cwd[MAX_PATH];
