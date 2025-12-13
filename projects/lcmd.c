@@ -31,13 +31,14 @@ int main()
                         end--;
                 memmove(buf, buf + start, end - start + 1);
                 buf[end - start + 1] = '\0';
-                if (strncmp(buf, "cd", 2) == 0)
+                if (strncmp(buf, "cd", 2) == 0 && buf[2] == '\0' || isspace((unsigned char)buf[2]))
                 {
                         if (buf[2] == '\0')
                                 printf("%s\n", cwd);
                         char *path = buf + 3;
                         if (!SetCurrentDirectoryA(path))
                                 fprintf(stderr, "Failed to switch directories to %s.\n", path);
+                        continue;
                 }
                 if (strcmp(buf, "exit") == 0)
                 {
@@ -45,6 +46,8 @@ int main()
                         Sleep(750);
                         exit(0);
                 }
+                else
+                        system(buf);
         }
         return 0;
 }
