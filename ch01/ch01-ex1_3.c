@@ -3,6 +3,8 @@
 /*
         print Fahrenheit-Celsius table
         for fahr = 0, 20, ..., 300
+        
+        Exemplo do Livro.
 */
 
 int main() // inicio do programa sempre na função main.

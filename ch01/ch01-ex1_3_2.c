@@ -1,5 +1,7 @@
 #include <stdio.h> // incluo informações da biblioteca padrão de entrada e saida
-
+/*
+        Exemplo do livro.
+*/
 int main()
 {
         float fahr, celsius;    // variáveis de temperatura agora são de ponto flutuante.
