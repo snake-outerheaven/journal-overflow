@@ -9,7 +9,7 @@ int main()
         size_t counter, lncounter;
         int input;
 
-        counter = lncounter = 0;
+        counter = lncounter = 0ULL;
 
         while ((input = getchar()) != EOF)
         {
