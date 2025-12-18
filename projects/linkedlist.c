@@ -18,15 +18,15 @@ int main()
         p = malloc(sizeof(Node));
 
         n->prev = NULL;
-        n->data = malloc(sizeof(char) * 60);
+        n->data = malloc(1024);
         n->next = p;
 
         p->prev = n;
-        p->data = malloc(sizeof(double) * 512);
+        p->data = malloc(1024);
         p->next = NULL;
 
         printf("Where main func is on memory: %p.\n", (void *)&main);
-        printf("Where p and n are on on memory: %p\t%p.\n", (void *)n, (void *)p);
+        printf("Where n and p are on on memory: %p\t%p.\n", (void *)n, (void *)p);
         printf("Where n data is on memory: %p.\n", (void *)n->data);
         printf("Where it points: %p.\n", (void *)n->next);
         printf("Where p data is on memory: %p.\n", (void *)p->data);
@@ -43,6 +43,6 @@ int main()
         p->data = NULL;
         p = NULL;
         n = NULL;
-        
+
         return 0;
 }
