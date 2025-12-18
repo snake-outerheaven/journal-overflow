@@ -1,48 +1,63 @@
-# Journal Overflow — Soluções comentadas de K&R (2nd Edition)
+# Journal Overflow
 
-[![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)]()
-[![Languages](https://img.shields.io/badge/languages-C-orange.svg)]()
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)  
+[![Linguagem: C](https://img.shields.io/badge/C-100%25-blue?logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
 
-Visão: este repositório contém soluções comentadas, testadas e organizadas para os exercícios do "The C Programming Language" — 2nd edition (Kernighan & Ritchie). O objetivo é ser um recurso didático: código claro, explicações curtas e testes automatizados quando aplicável.
+**Repositório de estudos.**
 
-Aviso importante
-- Estas são soluções criadas para fins educacionais. Não reproduzem texto protegido do livro.
-- Cite Kernighan & Ritchie como fonte das ideias/exercícios quando for relevante.
-- Licença: este repositório é distribuído sob a GNU General Public License v3 (GPLv3). Veja o arquivo LICENSE na raiz para detalhes.
+Este repositório está organizado em torno do aprendizado da linguagem de programação C, baseado no clássico "The C Programming Language" de Brian Kernighan e Dennis Ritchie (K&R).
 
-Índice rápido
-- Visão geral
-- Estrutura do repositório
-- Convenções de nomeação
-- Como compilar e executar (simples)
-- Testes e validação
-- Guia de contribuição
-- Recursos
-- Licença
+## Conteúdo
 
-Estrutura proposta
-- /ch01/                       -> capítulo 1
-  - ch01-ex01/                 -> exercício 1
-    - solution.c               -> código fonte do exercício (somente .c por enquanto)
-    - README.md                -> explicação da solução (curta)
-- /docs/                       -> notas gerais, guia de estilo
-- README.md                    -> este arquivo
-- LICENSE                      -> GPLv3
+### Capítulos
 
-Observações importantes
-- Sem Makefile por enquanto: cada exercício conterá apenas um arquivo solution.c (conforme solicitado). Se desejar, posteriormente adicionamos Makefiles por exercício.
-- Cada solução deve ser didática, bem comentada e preferivelmente acompanhada de um pequeno README explicando a ideia.
+Cada capítulo do livro K&R é explorado com exercícios e exemplos práticos:
 
-Como contribuir
-- Abra uma issue antes de submeter um conjunto grande de soluções.
-- Para PRs pequenas (um ou poucos exercícios): inclua descrição do exercício (capítulo + número), resumo da abordagem e testes/entradas de exemplo se houver.
-- Nomenclatura de diretórios: chNN-exMM (ex.: ch02-ex05).
+* **[ch0X](https://github.com/snake-outerheaven/journal-overflow/tree/main/ch01)**: Exercícios e código do Capítulo X do K&R.
 
-Recursos
-- Página do livro na Amazon (The C Programming Language, 2nd Edition):
-  - https://www.amazon.com/Programming-Language-2nd-Brian-Kernighan/dp/0131103628
-- Referência/recursos sobre C:
-  - https://www.c-language.org/
+### Projetos
 
-Licença
-- Este repositório é licenciado sob GNU General Public License v3.0 — consulte o arquivo LICENSE para o texto completo.
+Projetos adicionais para estender o aprendizado, aplicando os conceitos do K&R:
+
+* **[projects](https://github.com/snake-outerheaven/journal-overflow/tree/main/projects)**: Aplicações práticas e código experimental.
+
+---
+
+## Começando
+
+### Pré-requisitos para Windows
+
+Certifique-se de ter o **MSVC (Microsoft Visual C++)** e o **CRT (C Runtime Library)** instalados.
+
+* Baixe e instale o **Visual Studio Build Tools** [aqui](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
+
+#### Compilar no Windows
+
+Abra o **Developer Command Prompt** do Visual Studio e use os comandos abaixo para compilar e executar:
+
+```
+cl /Fe:output_filename input_file.c
+output_filename.exe
+```
+
+### Pré-requisitos para Ambientes Unix-like
+
+Certifique-se de ter um compilador de C instalado. As opções mais comuns incluem:
+
+* [GCC](https://gcc.gnu.org/)
+* [Clang](https://clang.llvm.org/)
+
+#### Compilar em Unix-like
+
+Use os comandos abaixo no terminal para compilar e executar:
+
+```
+gcc -o output_filename input_file.c
+./output_filename
+```
+
+---
+
+## Licença
+
+Este projeto está licenciado sob os termos da [GNU GPL v3](LICENSE).
