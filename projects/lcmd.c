@@ -1,78 +1,81 @@
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
-/*
-        TODO: Add cls, dir. type builtins
- */
-int trim(char *buf)
+#define BUFSIZ 1024
+
+void write(HANDLE hOut, const char *s)
 {
-        int end = strlen(buf);
-        if (end == 0)
-                return 1;
-        end--;
-        int start = 0;
-        while (end >= start && isspace((unsigned char)buf[start]))
-                start++;
-        while (start <= end && isspace((unsigned char)buf[end]))
-                end--;
-        memmove(buf, buf + start, end - start + 1);
-        buf[end - start + 1] = '\0';
-        return 0;
+        DWORD written;
+        while (*s)
+        {
+                WriteFile(hOut, s, 1, &written, NULL);
+                s++;
+        }
+}
+
+DWORD read(HANDLE hIn, char *buf, DWORD max)
+{
+        char c;
+        DWORD read, total;
+
+        read = total = 0;
+
+        while ((total + 1) < max)
+        {
+                if (!ReadFile(hIn, &c, 1, &read, NULL) || read == 0)
+                        break;
+
+                if (c == '\r')
+                        continue;
+
+                if (c == '\n')
+                        break;
+
+                buf[total++] = c;
+        }
+
+        buf[total] = '\0';
+
+        return total;
 }
 
 int main()
 {
-        char buf[BUFSIZ], cwd[MAX_PATH];
+        char input[BUFSIZ], cwd[MAX_PATH];
+        HANDLE hIn, hOut;
 
-        system("cls");
+        hIn = GetStdHandle(STD_INPUT_HANDLE);
+        hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
         while (1)
         {
-                GetCurrentDirectoryA(sizeof(cwd), cwd);
-                printf("%s> ", cwd);
-                fflush(stdout);
-                if (!fgets(buf, sizeof(buf), stdin))
-                {
-                        if (ferror(stdin))
-                        {
-                                fprintf(stderr, "stdin failed.\n");
-                                return 1;
-                        }
-                        putchar('\n');
-                        return 0;
-                }
-                if (trim(buf))
+                GetCurrentDirectoryA(MAX_PATH, cwd);
+                write(hOut, cwd);
+                write(hOut, "\\> ");
+
+                if (read(hIn, input, BUFSIZ) == 0)
                         continue;
-                if (strncmp(buf, "cd", 2) == 0 && (buf[2] == '\0' || isspace((unsigned char)buf[2])))
+
+                if (lstrcmpA(input, "exit") == 0)
+                        break;
+
+                STARTUPINFOA si;
+                PROCESS_INFORMATION pi;
+
+                ZeroMemory(&si, sizeof(si));
+                ZeroMemory(&pi, sizeof(pi));
+                si.cb = sizeof(si);
+
+                if (!CreateProcessA(NULL, input, NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi))
                 {
-                        if (buf[2] == '\0')
-                        {
-                                printf("%s\n", cwd);
-                                continue;
-                        }
-                        char *path = buf + 3;
-                        if (!SetCurrentDirectoryA(path))
-                                fprintf(stderr, "Failed to switch directories to %s.\n", path);
+                        write(hOut, "Error executing command.\n");
                         continue;
-                }
-                if (strcmp(buf, "cls") == 0)
-                {
-                        printf("\x1b[2J\x1b[H");
-                        fflush(stdout);
-                        continue;
-                }
-                if (strcmp(buf, "exit") == 0)
-                {
-                        printf("lcmd is shutting off.\n");
-                        Sleep(750);
-                        exit(0);
                 }
 
-                else
-                        system(buf);
+                WaitForSingleObject(pi.hProcess, INFINITE);
+
+                CloseHandle(pi.hThread);
+                CloseHandle(pi.hProcess);
         }
         return 0;
 }
