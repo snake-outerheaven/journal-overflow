@@ -16,7 +16,7 @@ int main()
         {
                 if (c == ' ' || c == '\n' || c == '\t')
                 {
-                        /*Too bad i forgot this  very important part, where i needed to check if the program was actually
+                        /*Too bad i forgot this very important part, where i needed to check if the program was actually
                                 checking if the FSM of in and out of words  was working correctly.*/
                         if (state == IN)
                                 putchar('\n');
