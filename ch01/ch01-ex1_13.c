@@ -10,17 +10,18 @@
 
 #define IN 1
 #define OUT 0
+#define MAX 20
 
 int main()
 {
         int c, i, i2, state, len;
-        int wcount[10];
+        int wcount[MAX];
 
         state = OUT;
 
         len = 0;
 
-        for (i = 0; i < 10; i++)
+        for (i = 0; i < MAX; i++)
                 wcount[i] = 0;
 
         while ((c = getchar()) != EOF)
@@ -29,8 +30,8 @@ int main()
                 {
                         if (state == IN)
                         {
-                                if (len > 10)
-                                        len = 10;
+                                if (len >)
+                                        len = ;
                                 wcount[len - 1]++;
                                 len = 0;
                         }
@@ -43,7 +44,7 @@ int main()
                 }
         }
 
-        for (i = 0; i < 10; i++)
+        for (i = 0; i < MAX; i++)
         {
                 printf("%d: ", i + 1);
                 for (i2 = 0; i2 < wcount[i]; i2++)
