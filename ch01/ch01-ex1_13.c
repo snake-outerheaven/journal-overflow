@@ -27,7 +27,6 @@ int main()
         {
                 if (c == ' ' || c == '\t' || c == '\n' || c == '.' || c == '!' || c == '?')
                 {
-
                         if (state == IN)
                         {
                                 if (len > 10)
