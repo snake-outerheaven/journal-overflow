@@ -30,8 +30,8 @@ int main()
                 {
                         if (state == IN)
                         {
-                                if (len >)
-                                        len = ;
+                                if (len > MAX)
+                                        len = MAX;
                                 wcount[len - 1]++;
                                 len = 0;
                         }
