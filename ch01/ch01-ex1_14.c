@@ -32,10 +32,28 @@ int main()
                 switch (state)
                 {
                 case READ_STATE:
-                        /* code */
+                        c = getc(stdin);
+
+                        if (c == EOF)
+                                state = EOF_STATE;
+                        else
+                                state = CLASSIFY_STATE;
+                        break;
+
+                case CLASSIFY_STATE:
+                        if (c >= 'a' && c <= 'z')
+                                freq[c - 'a']++;
+                        else if (c >= 'A' && c <= 'Z')
+                                freq[c - 'A']++;
+                        state = READ_STATE;
+                        break;
+
+                case EOF_STATE:
+                        state = PRINT_STATE;
                         break;
 
                 default:
+                        printf("Undefined behavior awaits here.\n");
                         break;
                 }
         }
