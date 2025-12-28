@@ -53,7 +53,6 @@ int main(void)
                 }
         }
 
-        /* print uppercase */
         for (i = 0; i < 26; i++)
         {
                 printf("%c -> ", 'A' + i);
@@ -64,7 +63,6 @@ int main(void)
 
         putchar('\n');
 
-        /* print lowercase */
         for (i = 0; i < 26; i++)
         {
                 printf("%c -> ", 'a' + i);
@@ -79,7 +77,5 @@ int main(void)
 /*
         Previous versions of this code were failing because i did something real stupid
 
-        i basically failed to realize the freq array had the uppercase base already defined
-        by default, so when i did  c - 'a' i was writing onto invalid memory and then after 
-        
+        i basically failed to realize the freq array had the uppercase base.
 */
