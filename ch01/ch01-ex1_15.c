@@ -8,7 +8,8 @@
 float cels(float);
 
 
-int main() {
+int main() 
+{
 
 	float fahr;
 
@@ -19,7 +20,8 @@ int main() {
 	step = 20;
 	fahr = (float)lower;
 
-	while(fahr <= upper) {
+	while(fahr <= upper) 
+	{
 		printf("%.0f\t->\t%.2f\n", fahr, cels(fahr));
 		fahr += step;
 	}
@@ -27,7 +29,8 @@ int main() {
 	return 0;
 }
 
-float cels(float fahr) {
+float cels(float fahr) 
+{
 	return (5.0/9.0) * (fahr - 32.0);
 }
 

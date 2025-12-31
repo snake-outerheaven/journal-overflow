@@ -44,6 +44,10 @@ int main() {
 
     case PRINT_STATE:
       break;
+
+    default:
+      printf("Undefined behaviour lives here.\n");
+      break;
     }
   }
 
