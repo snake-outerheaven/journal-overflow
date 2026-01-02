@@ -1,41 +1,40 @@
 #include <stdio.h>
 
-	/*
-	 * Write a program to remove trailing blanks and tabs from each line of input,
-	 * and to delete entirely blank lines.
-	 */
+/*
+ * Write a program to remove trailing blanks and tabs from each line of input,
+ * and to delete entirely blank lines.
+ */
 #define MAXLINE 1000
 
-
-int get_line(char*,int); 
-int trim(char*);
+int get_line(char *, int);
+int trim(char *);
 
 int main()
 {
-	char line[MAXLINE];
+    char line[MAXLINE];
 
-	while(get_line(line,MAXLINE) > 0)
-		if(trim(line) > 0)
-			printf("%s",line);
-	return 0;
+    while (get_line(line, MAXLINE) > 0)
+        if (trim(line) > 0)
+            printf("%s", line);
+    return 0;
 }
 
 int get_line(char *in, int lim)
 {
-	int c, i;
+    int c, i;
 
-	for(i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
-		in[i] = c;
+    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
+        in[i] = c;
 
-	if(c == '\n')
-	{
-		in[i] = '\n';
-		i++;
-	}
+    if (c == '\n')
+    {
+        in[i] = '\n';
+        i++;
+    }
 
-	in[i] = '\0';
+    in[i] = '\0';
 
-	return i;
+    return i;
 }
 
 int trim(char *s)
