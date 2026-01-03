@@ -22,7 +22,6 @@ int reverse(char *);
 int main()
 {
     char s[MAXLINE];
-    int len;
 
     while (get_line(s, MAXLINE) > 0)
         if (reverse(s) > 0)
@@ -64,6 +63,7 @@ int reverse(char *s)
     {
         temp = s[i];
         s[i] = s[c];
+        s[c] = temp;
 
         c++, i--, d++;
     }
