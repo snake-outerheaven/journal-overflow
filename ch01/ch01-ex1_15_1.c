@@ -7,7 +7,7 @@
 
 #define MAXLINE 1000
 
-int getline(char*, int);
+int get_line(char*, int);
 void copy(char*, char*);
 
 
@@ -20,7 +20,7 @@ int main()
 
 	max = 0;
 
-	while((len = getline(line,MAXLINE)) > 0)
+	while((len = get_line(line,MAXLINE)) > 0)
 		if(len > max)
 		{
 			max = len;
@@ -31,7 +31,7 @@ int main()
 	return 0;
 }
 
-int getline(char *s,int lim)
+int get_line(char *s,int lim)
 {
 	int c, i;
 
