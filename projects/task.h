@@ -11,7 +11,7 @@ typedef struct tasknode TaskNode;
 a item counter and a capacity counter.*/
 typedef struct tasklist TaskList;
 
-Task *task_create(char *, char *, int);
+Task *task_create(const char *, const char *, const int);
 void task_free(Task *);
 
 TaskList *create_tasklist(int);
