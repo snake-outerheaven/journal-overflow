@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
 /*
         this file will hold the implementations of task.h
@@ -52,4 +51,12 @@ Task *task_create(const char *nm, const char *desc, const int done)
     t->done = done;
 
     return t;
+}
+
+void task_free(Task *t)
+{
+    if (t)
+        free(t);
+    else
+        fprintf(stderr, "Tried to free a null task.");
 }
