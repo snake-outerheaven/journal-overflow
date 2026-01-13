@@ -1,6 +1,5 @@
+#include "vector.h"
 #include <stdio.h>
-
-#include "task.h"
 
 /*
         Trying to implement a fuil fledged task manager in C,
