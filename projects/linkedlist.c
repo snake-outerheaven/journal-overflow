@@ -13,6 +13,7 @@ typedef struct Node
 
 Node *list_init();
 int list_append(Node *, int);
+void list_free(Node *);
 
 int main()
 {
@@ -61,4 +62,21 @@ int list_append(Node *head, int value)
     current->next = new;
 
     return 0;
+}
+
+void list_free(Node *head)
+{
+    Node *temp;
+    Node *current;
+
+    current = head;
+
+    while (current != NULL)
+    {
+        temp = current->next;
+        free(current);
+        current = temp;
+    }
+
+    current = NULL;
 }
