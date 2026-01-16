@@ -1,4 +1,4 @@
-#include <unistd.h>
+//#include <unistd.h>
 
 	/*
 	 * getchar and putchar program in raw POSIX syscalls

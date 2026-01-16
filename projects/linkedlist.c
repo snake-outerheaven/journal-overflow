@@ -1,46 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node Node;
+/*
+    Redoing exercise 3 of eloquent javascript in C
+*/
 
-struct node
+typedef struct Node
 {
-    struct node *prev;
-    void *data;
-    struct node *next;
-};
+    int value;
+    struct Node *next;
+} Node;
+
+Node *list_init();
+int list_append(Node *, int);
 
 int main()
 {
-    Node *p, *n;
+    Node *n;
+    n = list_init();
+    if (list_append(n, 3))
+        puts("Uuups!");
+    puts("It just works.");
+    return 0;
+}
 
-    n = malloc(sizeof(Node));
+Node *list_init()
+{
+    Node *p;
+
     p = malloc(sizeof(Node));
 
-    n->prev = NULL;
-    n->data = malloc(1024);
-    n->next = p;
-
-    p->prev = n;
-    p->data = malloc(1024);
+    p->value = 0;
     p->next = NULL;
 
-    printf("Where main func is on memory: %p.\n", (void *)&main);
-    printf("Where n and p are on memory: %p\t%p.\n", (void *)n, (void *)p);
-    printf("Where n data is on memory: %p.\n", (void *)n->data);
-    printf("Where it points: %p.\n", (void *)n->next);
-    printf("Where p data is on memory: %p.\n", (void *)p->data);
-    printf("Where it points: %p.\n", (void *)p->prev);
-    printf("Where n->prev points: %p.\n", (void *)n->prev);
-    printf("Where p->next points: %p.\n", (void *)p->next);
+    return p;
+}
 
-    free(n->data);
-    free(p->data);
-    n->data = p->data = NULL;
+int list_append(Node *head, int value)
+{
+    Node *current;
+    Node *new;
 
-    free(p);
-    free(n);
-    p = n = NULL;
+    if (!head)
+        return 1;
+
+    current = head;
+    new = malloc(sizeof(Node));
+
+    if (!new)
+        return 2;
+
+    while (current->next != NULL)
+    {
+        current = current->next;
+    }
+
+    new->value = value;
+    new->next = NULL;
+
+    current->next = new;
 
     return 0;
 }
