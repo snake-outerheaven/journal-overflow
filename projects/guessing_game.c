@@ -53,7 +53,9 @@ int trim(char *buf)
 
     memmove(buf, buf + start, end - start + 1);
 
-    buf[end - start + 1] = '\0';
+    /* buf[end - start + 1] = '\0'; */
+
+    *(buf + (end - start + 1)) = '\0'; /*  pointer notation. */
 
     return 0;
 }
