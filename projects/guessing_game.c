@@ -39,10 +39,14 @@ int main(void)
     while (1)
     {
         tries++;
-        printf("Please, write a guess between %d and %d: ", MIN, MAX);
+        printf("Please, write a guess between %d and %d (type quit to quit): ",
+               MIN, MAX);
 
         if (!fgets(input, sizeof(input), stdin) || trim(input) == BAD_TRIM)
             continue;
+
+        if (!strcmp(input, "quit"))
+            break;
 
         if (parse(input, &guess) == BAD_PARSE)
         {
