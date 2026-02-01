@@ -5,16 +5,23 @@
 #include <string.h>
 #include <time.h>
 
+#define MAXINPUT 50
+#define MAX 100
+#define MIN 1
+
+#define TRIM_BAD 1
+#define TRIM_GOOD 0
+
 int trim(char *);
 
 int main(void)
 {
-    char input[50];
+    char input[MAXINPUT];
     /* int guess; */
     int secret;
 
     srand(time(NULL));
-    secret = rand() % 100 + 1;
+    secret = rand() % MAX + MIN;
 
     printf("Dear player, this is a guessing game designed to test my skills "
            "after juggling a bit of K&R first chapter.\nI wish you have as "
@@ -24,7 +31,7 @@ int main(void)
 
     printf("Please, write a guess between 1 and 100 please: ");
 
-    if (!fgets(input, sizeof(input), stdin) || trim(input))
+    if (!fgets(input, sizeof(input), stdin) || trim(input) == TRIM_BAD)
         exit(EXIT_FAILURE);
 
     printf("You entered %s.\n", input);
@@ -41,7 +48,7 @@ int trim(char *buf)
     end = strlen(buf);
 
     if (end == 0)
-        return 1;
+        return TRIM_BAD;
 
     end--;
 
@@ -57,5 +64,5 @@ int trim(char *buf)
 
     *(buf + (end - start + 1)) = '\0'; /*  pointer notation. */
 
-    return 0;
+    return TRIM_GOOD;
 }
