@@ -10,3 +10,29 @@
 */
 
 #define TABSIZE 8 /*just like linux source code.*/
+
+int main()
+{
+    int c;
+    int i;
+    int spaces;
+    int column = 0;
+
+    for (c = 0; (c = getchar()) != EOF;)
+    {
+        if (c == '\t')
+        {
+            spaces = TABSIZE - (column % TABSIZE);
+            for (i = 0; i < spaces; i++)
+                putchar(' '), column++;
+        }
+
+        else if (c == '\n')
+            putchar(c), column = 0;
+
+        else
+            putchar(c), column++;
+    }
+
+    return 0;
+}
