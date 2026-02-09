@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include <time.h>
 
 #define MAXINPUT 50
 #define MAX 100
 #define MIN 1
-
 #define BAD_TRIM 1
 #define GOOD_TRIM 0
 
@@ -17,6 +17,7 @@
 
 int trim(char *);
 int parse(char *, int *);
+void Sleep(int);
 
 int main(void)
 {
@@ -46,12 +47,16 @@ int main(void)
             continue;
 
         if (!strcmp(input, "quit"))
-            break;
+	{
+		puts("Quitting...");
+		Sleep(1000);
+		break;
+	}
 
         if (parse(input, &guess) == BAD_PARSE)
         {
             fprintf(stderr,
-                    "It wasn't possible to parse the input: %s to a integer.\n",
+                    "It wasn't possible to parse the input \"%s\" to a integer.\n",
                     input);
         }
 
@@ -119,4 +124,9 @@ int parse(char *buf, int *out)
         return BAD_PARSE;
     else
         return GOOD_PARSE;
+}
+
+void Sleep(int tm)
+{
+	usleep(tm * 1000);
 }
