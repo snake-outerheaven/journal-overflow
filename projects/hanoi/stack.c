@@ -54,7 +54,7 @@ int kill(Stack *s)
 size_t get_size(const Stack *s)
 {
     if (!s)
-        return -1;
+        return 0;
 
     return s->size;
 }
