@@ -35,5 +35,7 @@ int main()
 
     free(stackarray);
 
+    kill(s);
+
     return 0;
 }
