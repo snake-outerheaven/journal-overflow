@@ -59,6 +59,19 @@ size_t get_size(const Stack *s)
     return s->size;
 }
 
+int peek(const Stack *s, int *output)
+{
+    if (!s || !output)
+        return 1;
+
+    if (!s->size)
+        return 2;
+
+    *output = s->head->data;
+
+    return 0;
+}
+
 int push(Stack *s, int *input)
 {
     struct node *newhead;
