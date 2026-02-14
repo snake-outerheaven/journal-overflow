@@ -1,4 +1,5 @@
 #include "stack.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 struct node
@@ -13,7 +14,7 @@ struct stack
     size_t size;
 };
 
-Stack *init(void)
+Stack *stack_init(void)
 {
     Stack *s;
 
@@ -28,7 +29,7 @@ Stack *init(void)
     return s;
 }
 
-int kill(Stack *s)
+int stack_kill(Stack **s)
 {
     struct node *current;
     struct node *temp;
@@ -36,17 +37,21 @@ int kill(Stack *s)
     if (!s)
         return 1;
 
-    current = s->head;
+    if (!*s)
+        return 2;
+
+    current = (*s)->head;
 
     while (current)
     {
         temp = current->next;
         free(current);
         current = temp;
-        s->size--;
+        (*s)->size--;
     }
 
-    free(s);
+    free(*s);
+    *s = NULL;
 
     return 0;
 }
@@ -109,6 +114,29 @@ int pop(Stack *s, int *output)
     s->size--;
 
     free(oldhead);
+
+    return 0;
+}
+
+int stack_print(const Stack *s)
+{
+    int i = 0;
+    struct node *current;
+
+    if (!s)
+        return 1;
+
+    if (!s->head)
+        return 2;
+
+    current = s->head;
+
+    while (current)
+    {
+        printf("Value: %d\tIndex: %d\n", current->data, i + 1);
+        i++;
+        current = current->next;
+    }
 
     return 0;
 }

@@ -14,7 +14,7 @@ struct board
     Stack *right;
 };
 
-Board *init_board(int discs)
+Board *board_init(int discs)
 {
     Board *b;
 
@@ -23,16 +23,16 @@ Board *init_board(int discs)
     if (!b)
         return NULL;
 
-    if (!(b->left = init()) || !(b->middle = init()) || !(b->right = init()))
+    if (!(b->left = stack_init()) || !(b->middle = stack_init()) || !(b->right = stack_init()))
     {
         if (b->left)
-            kill(b->left);
+            stack_kill(&b->left);
 
         if (b->middle)
-            kill(b->middle);
+            stack_kill(&b->middle);
 
         if (b->right)
-            kill(b->right);
+            stack_kill(&b->right);
 
         free(b);
 
@@ -42,7 +42,7 @@ Board *init_board(int discs)
     return b;
 }
 
-int kill_board(Board *b)
+int board_kill(Board *b)
 {
     if (!b)
         return ARG_ERROR;
@@ -50,22 +50,22 @@ int kill_board(Board *b)
     if (!b->left || !b->middle || !b->right)
     {
         if (b->left)
-            kill(b->left);
+            stack_kill(&b->left);
 
         if (b->middle)
-            kill(b->middle);
+            stack_kill(&b->middle);
 
         if (b->right)
-            kill(b->right);
+            stack_kill(&b->right);
 
         free(b);
 
         return MALLOC_ERROR;
     }
 
-    kill(b->left);
-    kill(b->middle);
-    kill(b->right);
+    stack_kill(&b->left);
+    stack_kill(&b->middle);
+    stack_kill(&b->right);
 
     free(b);
 

@@ -1,41 +1,31 @@
-#include "helper.h"
 #include "stack.h"
 #include <stddef.h>
 #include <stdio.h>
-#include <stdlib.h>
 
-int main()
+#define MAX 7
+
+int main(void)
 {
     int i;
-    int array[10];
-    int size = sizeof(array) / sizeof(array[0]);
-    int *stackarray;
-    Stack *s;
-    size_t stacksize;
-    IntArray a = {array, size};
+    Stack *s = NULL;
 
-    s = init();
+    printf("Where does the stack pointer is pointing to right now: %p\n",
+           (void *)s);
 
-    for (i = 0; i < a.size; i++)
-    {
-        printf("Please write the %d number you wish to push to the stack: ",
-               i + 1);
-        scanf("%d", &a.data[i]);
-        push(s, &array[i]);
-    }
+    s = stack_init();
 
-    stacksize = get_size(s);
+    printf("Where does the stack pointer is pointing to right now: %p\n",
+           (void *)s);
 
-    stackarray = malloc(stacksize * sizeof(int));
+    for (i = 0; i <= MAX; i++)
+        push(s, &i);
 
-    stack_to_array(s, stackarray);
+    stack_print(s);
 
-    for (i = 0; i < stacksize; i++)
-        printf("%d\n", stackarray[i]);
+    stack_kill(&s);
 
-    free(stackarray);
-
-    kill(s);
+    printf("Where does the stack pointer is pointing to right now: %p\n",
+           (void *)s);
 
     return 0;
 }
