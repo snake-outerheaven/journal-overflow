@@ -6,6 +6,7 @@ Stack *stack_init(void);
 int stack_kill(Stack **);
 
 int peek(const Stack *, int *);
+int peek_depth(const Stack *, size_t, int *);
 size_t get_size(const Stack *);
 
 int push(Stack *, int *);

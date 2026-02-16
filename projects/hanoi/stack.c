@@ -77,6 +77,27 @@ int peek(const Stack *s, int *output)
     return 0;
 }
 
+int peek_depth(const Stack *s, size_t depth, int *output)
+{
+    size_t i = 0ULL;
+    struct node *current = NULL;
+
+    if (!s || !s->head || depth > s->size || !output)
+        return 1;
+
+    current = s->head;
+
+    while (i < depth)
+    {
+        current = current->next;
+        i++;
+    }
+
+    *output = current->data;
+
+    return 0;
+}
+
 int push(Stack *s, int *input)
 {
     struct node *newhead;
