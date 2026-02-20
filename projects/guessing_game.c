@@ -3,20 +3,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <time.h>
+#include <unistd.h>
 
-#define MAXINPUT 50
+#define MAXINPUT 100
 #define MAX 100
 #define MIN 1
+
 #define BAD_TRIM 1
 #define GOOD_TRIM 0
 
 #define BAD_PARSE 1
 #define GOOD_PARSE 0
 
+#define BAD_SAVE 1
+#define GOOD_SAVE 0
+
 int trim(char *);
 int parse(char *, int *);
+int save(const int, const int);
 void Sleep(int);
 
 int main(void)
@@ -47,17 +52,19 @@ int main(void)
             continue;
 
         if (!strcmp(input, "quit"))
-	{
-		puts("Quitting...");
-		Sleep(1000);
-		break;
-	}
+        {
+            puts("Quitting...");
+            Sleep(1000);
+            break;
+        }
 
         if (parse(input, &guess) == BAD_PARSE)
         {
-            fprintf(stderr,
-                    "It wasn't possible to parse the input \"%s\" to a integer.\n",
-                    input);
+            fprintf(
+                stderr,
+                "It wasn't possible to parse the input \"%s\" to a integer.\n",
+                input);
+            continue;
         }
 
         if (guess > MAX)
@@ -83,6 +90,9 @@ int main(void)
             break;
         }
     }
+
+    if (save(tries, secret) == BAD_SAVE)
+        puts("It wasn't possible to save this run.");
 
     return 0;
 }
@@ -117,16 +127,46 @@ int trim(char *buf)
 int parse(char *buf, int *out)
 {
     char *check;
+    long val;
 
-    *out = (int)strtoul(buf, &check, 10);
+    val = strtol(buf, &check, 10);
 
-    if (check == buf)
+    if (check == buf || *check != '\0')
         return BAD_PARSE;
-    else
-        return GOOD_PARSE;
+
+    if (val < MIN || val > MAX)
+        return BAD_PARSE;
+
+    *out = (int)val;
+
+    return GOOD_PARSE;
 }
 
 void Sleep(int tm)
 {
-	usleep(tm * 1000);
+    usleep(tm * 1000);
+}
+
+int save(const int tries, const int random)
+{
+    char timestamp[MAXINPUT];
+    time_t now;
+    struct tm *tm_info;
+    FILE *fp;
+
+    time(&now);
+    tm_info = localtime(&now);
+
+    strftime(timestamp, sizeof(timestamp), "%d/%m/%Y %H:%M:%S", tm_info);
+
+    fp = fopen("guessing_game_log.txt", "a");
+
+    if (!fp)
+        return BAD_SAVE;
+
+    fprintf(fp, "[%s] tries=%d random=%d\n", timestamp, tries, random);
+
+    fclose(fp);
+
+    return GOOD_SAVE;
 }
