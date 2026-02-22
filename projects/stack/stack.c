@@ -1,4 +1,5 @@
 #include "stack.h"
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -183,6 +184,33 @@ int stack_to_array(const Stack *s, int *array)
         current = current->next;
         i++;
     }
+
+    return 0;
+}
+
+int stack_invert(Stack *s)
+{
+    struct node *current = NULL;
+    struct node *prev = NULL;
+    struct node *next = NULL;
+
+    if (!s)
+        return 1;
+
+    if (!s->head)
+        return 2;
+
+    current = s->head;
+
+    while (current)
+    {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+
+    s->head = prev;
 
     return 0;
 }

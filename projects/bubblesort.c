@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define ASIZE 1000
+#define ASIZE 10
 
 #define MAX ASIZE
 #define MIN 0
@@ -16,10 +16,10 @@ int main()
     int random;
     int a[ASIZE];
 
-    srand(time(NULL));
 
     while (i < ASIZE)
     {
+        srand(time(NULL));
         random = rand() % MAX + MIN;
         a[i] = random;
         i++;

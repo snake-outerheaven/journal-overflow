@@ -14,3 +14,5 @@ int pop(Stack *, int *);
 
 int stack_print(const Stack *);
 int stack_to_array(const Stack *, int *);
+
+int stack_invert(Stack *);
