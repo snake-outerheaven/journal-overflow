@@ -1,3 +1,6 @@
+#ifndef STACK_H
+#define STACK_H
+
 #include <stddef.h>
 
 typedef struct stack Stack;
@@ -16,3 +19,5 @@ int stack_print(const Stack *);
 int stack_to_array(const Stack *, int *);
 
 int stack_invert(Stack *);
+
+#endif
