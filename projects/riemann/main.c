@@ -21,7 +21,7 @@ double cube(double value)
 
 int main(void)
 {
-	size_t steps = 1e10;
+	size_t steps = 10000000;
 	double a = 0.0;
 	double b = 10.0;
 
