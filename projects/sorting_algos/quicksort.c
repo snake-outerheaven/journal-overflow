@@ -36,9 +36,9 @@ void quicksort(int *item, int left, int right)
 		}
 	} while(i <= j);
 
-	if(left < j)
+	if (left < j)
 		quicksort(item, left, j);
-	if(right > i)
+	if (right > i)
 		quicksort(item, i, right);
 
 }
