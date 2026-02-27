@@ -24,7 +24,7 @@ manager_t *manager_init(void)
 	if(!m)
 		return NULL;
 
-	m->tasks = malloc(sizeof(void *) * init_cap);
+	m->tasks = malloc(sizeof(task_t *) * init_cap);
 	if(!m->tasks)
 	{
 		free(m);
@@ -73,17 +73,48 @@ int manager_add(manager_t *m, task_t *t)
 		if(!tmp)
 			return 2;
 
-		m->tasks = temp;
-		m->size++;
+		m->tasks = tmp;
 		m->capacity = new_cap;
 	}
 
 	m->tasks[m->size] = t;
+	m->size++;
 
 	return 0;
 }
 
-/*
- * TODO:Implement a remove at last index operation
- * 	in the task manager
- */
+int manager_rm(manager_t *m, task_t **t)
+{
+	if(!m || !t)
+		return 1;
+
+	if(!m->size)
+		return 2;
+
+	*t = m->tasks[m->size - 1];
+
+	m->tasks[m->size - 1] = NULL;
+
+	m->size--;
+
+	return 0;
+}
+
+int search_and_retrieve(const manager_t *m, task_t **t, const size_t target)
+{
+	size_t i;
+
+	if(!m || !t)
+		return 1;
+
+	if(target >= m->size)
+		return 2;
+
+	for(i = 0; i < m->size; ++i)
+		;
+
+	*t = m->tasks[target];
+
+	return 0;
+}
+
