@@ -102,16 +102,11 @@ int manager_rm(manager_t *m, task_t **t)
 
 int search_and_retrieve(const manager_t *m, task_t **t, const size_t target)
 {
-	size_t i;
-
 	if(!m || !t)
 		return 1;
 
 	if(target >= m->size)
 		return 2;
-
-	for(i = 0; i < m->size; ++i)
-		;
 
 	*t = m->tasks[target];
 
