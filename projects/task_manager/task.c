@@ -81,14 +81,58 @@ int task_get_taskname(const task_t *t, char *out)
 	return 0;
 }
 
-int task_set_taskname(task_t *t, char *out)
+int task_set_taskname(task_t *t, char *in)
+{
+	if(!t || !in)
+		return 1;
+
+	strncpy(t->taskname, in, MAXBUF - 1);
+
+	t->taskname[MAXBUF - 1] = '\0';
+
+	return 0;
+}
+
+int task_get_desc(const task_t *t, char *out)
 {
 	if(!t || !out)
 		return 1;
 
-	strncpy(t->taskname, out, MAXBUF - 1);
+	strncpy(out, t->desc, MAXBUF - 1);
 
-	t->taskname[MAXBUF - 1] = '\0';
+	out[MAXBUF - 1] = '\0';
+
+	return 0;
+}
+
+int task_set_desc(task_t *t, char *in)
+{
+	if(!t || !in)
+		return 1;
+
+	strncpy(t->desc, in, MAXBUF - 1);
+
+	out[MAXBUF - 1] = '\0';
+
+	return 0;
+}
+
+int task_get_done(const task_t *t, int *out)
+{
+	if(!t || !out)
+		return 1;
+
+	*out = t->done;
+
+	return 0;
+}
+
+int task_set_done(task_t *t, int in)
+{
+	if(!t)
+		return 1;
+
+	t->done = in;
 
 	return 0;
 }

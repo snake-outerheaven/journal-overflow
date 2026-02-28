@@ -3,8 +3,6 @@
 
 #include "task.h"
 
-#include <stddef.h>
-
 typedef struct manager manager_t;
 
 manager_t *manager_init(void);
@@ -15,6 +13,9 @@ int manager_add(manager_t *, task_t *);
 
 int manager_rm(manager_t *);
 
-int search_and_retrieve(const manager_t *, task_t **, const size_t);
+/*
+ * TODO:Implement linear search and quicksort by id of the tasks on the dynamic
+ * 	array.
+ */
 
 #endif

@@ -6,11 +6,6 @@ typedef struct task task_t;
 task_t *task_init(void);
 void task_delete(task_t **);
 
-/*
- * TODO:Finish the rest of the getters and setters for the task struct
- * 	on the task.c file.
- */
-
 int task_get_id(const task_t *, int *);
 int task_set_id(task_t *, int);
 
