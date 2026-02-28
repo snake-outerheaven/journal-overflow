@@ -11,9 +11,9 @@
 
 struct task
 {
-	int id;
 	char taskname[MAXBUF];
 	char desc[MAXBUF];
+	int id;
 	int done;
 };
 
@@ -22,15 +22,10 @@ task_t *task_init(void)
 {
 	task_t *t;
 
-	t = malloc(sizeof(struct task));
+	t = calloc(1, sizeof(struct task));
 
 	if(!t)
 		return NULL;
-
-	t->id = rand() % MAX_ID + MIN_ID;
-	memset(t->taskname, 0, MAXBUF);
-	memset(t->desc, 0, MAXBUF);
-	t->done = 0;
 
 	return t;
 }
@@ -112,7 +107,7 @@ int task_set_desc(task_t *t, char *in)
 
 	strncpy(t->desc, in, MAXBUF - 1);
 
-	out[MAXBUF - 1] = '\0';
+	t->desc[MAXBUF - 1] = '\0';
 
 	return 0;
 }

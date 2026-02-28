@@ -47,7 +47,7 @@ void manager_delete(manager_t **m)
 		return;
 
 
-	for(i = 0; i < m->size; i++)
+	for(i = 0; i < (*m)->size; i++)
 		task_delete((*m)->tasks[i]);
 
 
