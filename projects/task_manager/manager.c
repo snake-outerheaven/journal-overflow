@@ -94,7 +94,7 @@ int manager_rm(manager_t *m)
     return 0;
 }
 
-int manager_rm_by_id(manager_t *m, int target)
+int manager_rm_by_id(manager_t *m, const int target)
 {
     size_t i;
     int id;
@@ -148,7 +148,8 @@ int manager_sort(manager_t *m)
     return 0;
 }
 
-int manager_search(manager_t *m, int target, task_t **t) {
+int manager_search(const manager_t *m, int target, task_t **t)
+{
     size_t i;
     int id;
 
@@ -168,4 +169,17 @@ int manager_search(manager_t *m, int target, task_t **t) {
     }
 
     return 3;
+}
+
+int manager_list(const manager_t *m)
+{
+    size_t i;
+    if (!m)
+        return 1;
+
+    for(i = 0; i < m->size; i++)
+        if(task_print(m->tasks[i]))
+            return 2;
+
+    return 0;
 }

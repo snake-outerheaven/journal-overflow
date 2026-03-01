@@ -1,1 +1,3 @@
-TODO: Implement task_print and manager_list for ui
+TODO: Implement task_print and manager_list for ui -> DONE
+
+TODO: Implement basic UI and test manager struct.

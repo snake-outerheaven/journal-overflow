@@ -18,4 +18,6 @@ int task_set_desc(task_t *, char *);
 int task_get_done(const task_t *, int *);
 int task_set_done(task_t *, int);
 
+int task_print(const task_t *);
+
 #endif
