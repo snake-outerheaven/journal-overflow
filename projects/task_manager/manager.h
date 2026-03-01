@@ -11,11 +11,12 @@ void manager_delete(manager_t **);
 
 int manager_add(manager_t *, task_t *);
 
-int manager_rm(manager_t *, task_t **);
+int manager_rm(manager_t *);
 
-/*
- * TODO:Implement linear search and bubblesort by id of the tasks on the dynamic
- * 	array.
- */
+int manager_rm_by_id(manager_t *, int);
+
+int manager_sort(manager_t *);
+
+int manager_search(manager_t *, int, task_t **);
 
 #endif
