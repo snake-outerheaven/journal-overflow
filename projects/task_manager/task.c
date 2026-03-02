@@ -6,8 +6,6 @@
 #include <string.h>
 
 #define MAXBUF 256
-#define MIN_ID 1
-#define MAX_ID 1024
 
 struct task
 {
@@ -52,7 +50,7 @@ int task_get_id(const task_t *t, int *out)
     return 0;
 }
 
-int task_set_id(task_t *t, int in)
+int task_set_id(task_t *t, const int in)
 {
     if (!t)
         return 1;
@@ -74,7 +72,7 @@ int task_get_taskname(const task_t *t, char *out)
     return 0;
 }
 
-int task_set_taskname(task_t *t, char *in)
+int task_set_taskname(task_t *t, const char *in)
 {
     if (!t || !in)
         return 1;
@@ -98,7 +96,7 @@ int task_get_desc(const task_t *t, char *out)
     return 0;
 }
 
-int task_set_desc(task_t *t, char *in)
+int task_set_desc(task_t *t, const char *in)
 {
     if (!t || !in)
         return 1;
@@ -120,7 +118,7 @@ int task_get_done(const task_t *t, int *out)
     return 0;
 }
 
-int task_set_done(task_t *t, int in)
+int task_set_done(task_t *t, const int in)
 {
     if (!t)
         return 1;

@@ -128,7 +128,7 @@ int manager_sort(manager_t *m)
     size_t x, y;
     task_t *temp;
 
-    if (!m)
+    if (!m || m->size < 2)
         return 1;
 
     for (x = m->size - 1; x > 0; x--)
@@ -177,8 +177,8 @@ int manager_list(const manager_t *m)
     if (!m)
         return 1;
 
-    for(i = 0; i < m->size; i++)
-        if(task_print(m->tasks[i]))
+    for (i = 0; i < m->size; i++)
+        if (task_print(m->tasks[i]))
             return 2;
 
     return 0;
