@@ -148,7 +148,7 @@ int manager_sort(manager_t *m)
     return 0;
 }
 
-int manager_search(const manager_t *m, int target, task_t **t)
+int manager_search(const manager_t *m, const int target, task_t **t)
 {
     size_t i;
     int id;

@@ -17,7 +17,7 @@ int manager_rm_by_id(manager_t *, const int);
 
 int manager_sort(manager_t *);
 
-int manager_search(const manager_t *, int, task_t **);
+int manager_search(const manager_t *, const int, task_t **);
 
 int manager_list(const manager_t *);
 
