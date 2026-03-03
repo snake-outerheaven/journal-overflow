@@ -22,7 +22,7 @@ manager_t *manager_init(void)
     if (!m)
         return NULL;
 
-    m->tasks = calloc(init_cap, sizeof(task_t *) * init_cap);
+    m->tasks = calloc(init_cap, sizeof(task_t *));
     if (!m->tasks)
     {
         free(m);
