@@ -1,6 +1,6 @@
-1 - Fazer um programa que receba três valores e verifique se estes podem ser os lados de um triângulo.
+1 - Fazer um programa que receba três valores e verifique se estes podem ser os lados de um triângulo. -> DONE
 
-2 – Fazer um programa que receba duas notas N1, N2 e o percentual de Frequência de um aluno e verifique a situação do aluno: (Aprovado – Reprovado – Prova Final)
+2 – Fazer um programa que receba duas notas N1, N2 e o percentual de Frequência de um aluno e verifique a situação do aluno: (Aprovado – Reprovado – Prova Final) -> DONE
 
 3 - Fazer um programa que receba o peso e a altura de uma pessoa e calcule o seu IMC Índice de Massa Corporal.  IMC=peso/(altura X altura) Verifique se o indivíduo está no peso ideal. IMC>=18.5 e IMC<25
 
