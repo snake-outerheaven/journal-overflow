@@ -17,7 +17,8 @@
 
 #define NEEDEDFREQ 75.0F
 #define NEEDEDAVG 7.0F
-#define FINALCONTEXTMINAVG NEEDEDAVG - 1.0F
+
+#define FINAL_CONTEXT_MIN_AVG NEEDEDAVG - 1.0F
 
 float gen_grade();
 float gen_freq();
@@ -40,13 +41,16 @@ int main()
     avg = gen_avg(n);
 
     if (avg >= NEEDEDAVG && freq >= NEEDEDFREQ)
-        puts("APROVADO.");
+        printf("APROVADO COM MEDIA %.2f E "
+			"FREQUENCIA %.2f.\n", avg, freq);
 
-    else if ((avg < NEEDEDAVG && avg >= FINALCONTEXTMINAVG) &&
+    else if ((avg < NEEDEDAVG && avg >= FINAL_CONTEXT_MIN_AVG) &&
              freq >= NEEDEDFREQ)
-        puts("PROVA FINAL.");
+        printf("PROVA FINAL. MEDIA %.2f "
+			"E FREQUENCIA %.2f,\n", avg, freq);
     else
-        puts("REPROVADO.");
+        printf("REPROVADO COM MEDIA %.2f E "
+			"FREQUENCIA %.2f.\n", avg, freq);
 
     return 0;
 }
