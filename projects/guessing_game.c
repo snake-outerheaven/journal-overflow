@@ -4,7 +4,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
+#ifdef __linux__
 #include <unistd.h>
+#elif _WIN32
+#include <Windows.h>
+#endif
 
 #define MAXINPUT 100
 #define MAX 100
@@ -22,7 +27,12 @@
 int trim(char *);
 int parse(char *, int *);
 int save(const int, const int);
+
+#ifdef __linux__
 void Sleep(int);
+#elif _WIN32
+void sleep(int);
+#endif
 
 int main(void)
 {
@@ -142,10 +152,18 @@ int parse(char *buf, int *out)
     return GOOD_PARSE;
 }
 
+#ifdef __linux__
 void Sleep(int tm)
 {
     usleep(tm * 1000);
 }
+
+#elif _WIN32
+void sleep(int tm)
+{
+    Sleep(tm);
+}
+#endif
 
 int save(const int tries, const int random)
 {
