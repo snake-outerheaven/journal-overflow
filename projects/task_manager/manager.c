@@ -138,7 +138,7 @@ int manager_sort(manager_t *m)
                 task_get_id(m->tasks[y - 1], &id2))
                 return 2;
 
-            if (id1 < id2)
+            if (id1 > id2)
             {
                 temp = m->tasks[y - 1];
                 m->tasks[y - 1] = m->tasks[y];
