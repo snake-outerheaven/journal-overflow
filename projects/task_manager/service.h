@@ -12,6 +12,6 @@ int service_create_task(service_t *, const char[], const char[], const int,
 
 int service_delete_task(service_t *, const int);
 
-int service_list_tasks(service_t *);
+int service_list_tasks(const service_t *);
 
 #endif

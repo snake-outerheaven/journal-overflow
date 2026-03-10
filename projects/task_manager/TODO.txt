@@ -2,4 +2,6 @@ TODO: Implement task_print and manager_list for ui -> DONE
 
 TODO: Create business logic above task_t and manager_t. -> DONE
 
+TODO: Finish basic implementation of the application service layer.
+
 TODO: Finish implementation of the application service layer.
