@@ -89,37 +89,11 @@ int manager_rm(manager_t *m)
 
     task_delete(&m->tasks[m->size - 1]);
 
+    m->tasks[m->size - 1] = NULL;
+
     m->size--;
 
     return 0;
-}
-
-int manager_rm_by_id(manager_t *m, const int target)
-{
-    size_t i;
-    int id;
-
-    if (!m)
-        return 1;
-
-    for (i = 0; i < m->size; i++)
-    {
-        if (task_get_id(m->tasks[i], &id))
-            return 2;
-
-        if (id == target)
-        {
-            task_delete(&m->tasks[i]);
-
-            memmove(m->tasks + i, m->tasks + i + 1,
-                    (m->size - 1 - i) * sizeof(task_t *));
-
-            m->size--;
-
-            return 0;
-        }
-    }
-    return 3;
 }
 
 int manager_sort(manager_t *m)
@@ -148,32 +122,80 @@ int manager_sort(manager_t *m)
     return 0;
 }
 
-int manager_search(const manager_t *m, const int target, task_t **t)
+int manager_search_index(const manager_t *m, const int target, size_t *out)
 {
-    size_t i;
+    size_t left, mid, right;
     int id;
 
-    if (!m || !t)
+    if (!m || !out)
         return 1;
 
-    for (i = 0; i < m->size; i++)
+    left = 0;
+    right = m->size;
+
+    while (left < right)
     {
-        if (task_get_id(m->tasks[i], &id))
+        mid = (left + right) / 2;
+
+        if (task_get_id(m->tasks[mid], &id))
             return 2;
 
         if (id == target)
         {
-            *t = m->tasks[i];
+            *out = mid;
             return 0;
         }
+
+        if (id < target)
+            left = mid + 1;
+        else
+            right = mid;
     }
 
     return 3;
 }
 
+int manager_rm_by_id(manager_t *m, const int target)
+{
+    size_t idx;
+
+    if (!m)
+        return 1;
+
+    if (manager_search_index(m, target, &idx))
+        return 2;
+
+    task_delete(&m->tasks[idx]);
+
+    memmove(&m->tasks[idx], &m->tasks[idx + 1],
+            (m->size - idx - 1) * sizeof(task_t *));
+
+    m->size--;
+
+    m->tasks[m->size] = NULL;
+
+    return 0;
+}
+
+int manager_retrieve(const manager_t *m, const int target, task_t **t)
+{
+    size_t idx;
+
+    if (!m || !t)
+        return 1;
+
+    if (manager_search_index(m, target, &idx))
+        return 2;
+
+    *t = m->tasks[idx];
+
+    return 0;
+}
+
 int manager_list(const manager_t *m)
 {
     size_t i;
+
     if (!m)
         return 1;
 
