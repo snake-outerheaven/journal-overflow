@@ -12,7 +12,7 @@ int main(void)
 {
     int num;
 
-    setlocale(LC_ALL, "pt-BR.UTF-8");
+    setlocale(LC_ALL, "pt_BR.UTF-8");
 
     srand((unsigned int)time(NULL));
 
