@@ -105,8 +105,8 @@ int manager_sort(manager_t *m)
     if (!m || m->size < 2)
         return 1;
 
-    for (x = m->size - 1; x > 0; x--)
-        for (y = 1; y <= x; y++)
+    for (x = 1; x < m->size - 1; x++)
+        for (y = m->size - 1; y >= x; y--)
         {
             if (task_get_id(m->tasks[y], &id1) ||
                 task_get_id(m->tasks[y - 1], &id2))
