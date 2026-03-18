@@ -12,4 +12,3 @@ clean:
 
 run: all
 	./$(TARGET)
-
