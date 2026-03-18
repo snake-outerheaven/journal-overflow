@@ -1,0 +1,30 @@
+1) Fazer um programa que gere aleatoriamente que leia a idade(17 a 45) e o sexo (1 - M ou 2 -F) de 20
+indivíduos e calcule a média de idade de cada grupo.
+
+2) Fazer um programa que gere aleatoriamente a produção (120 a 350) e a linha de produção (1 ou 2) de
+50 operários a calcule a média de produção geral e de cada linha.
+
+3) Dado o exercício 2 faça outro algoritmo que calcule o percentual de operários de cada linha de
+produção e o percentual de operários que produziram mais de 300 peças.
+
+4) Faça um programa que gere aleatoriamente o sexo(1 - M ou 0 - F) a idade (12 a 17)e o esporte preferido
+(1 – Basquete, 2 – Futebol ou 3 – Vôlei) de um grupo de 75 jovens e calcule: a média de idade dos
+jovens que preferem cada esporte e a média das idades dos meninos e das meninas.
+
+5) Dado o exercício 4 calcule o percentual de jovens de cada sexo em cada modalidade.
+
+6) Uma empresa de manutenção de equipamentos deseja fazer um estudo em relação um conjunto de
+250 Ordens de Serviço executadas, para isso ofereceu um arquivo contendo o Número da OS(1354-
+1603) a quantidade de dias previstos par a entrega, a quantidade de dias gastos e o tipo do serviço (1 –
+Manutenção ou 2 – Reparo) . Faça um programa que gere aleatoriamente as informações e calcule: O
+percentual de ordens de serviço de cada tipo entregue fora do prazo e o número da OS com maior
+atraso.
+
+7) Dado o exercício 6 calcule a média de dias de atraso para as OS’s de cada tipo quando houver e o
+percentual de OS’s independente do tipo entregues antes do prazo.
+
+8) Um hospital está fazendo um estudo referente um conjunto de 100 pacientes atendidos em sua
+emergência, para isso faça um programa que gere aleatoriamente o tipo de atendimento(0– Clinica
+Geral ou 1 – Ortopedia) a origem (0 – Particular ou 1 – Plano de Saúde) e a idade dos pacientes(0- 90).
+Calcule o percentual de atendimentos de cada tipo, a média de idade dos pacientes de cada origem e o
+percentual de pacientes da Clínica geral com idade superior a 60 ano.
