@@ -11,9 +11,6 @@
 
 #define MAX 80
 
-// implementa ordenação bolha
-// para ordenar um vetor de forma
-// crescente e decrescente de acordo con OP.
 int bubble(int v[], size_t len, int op);
 
 int main()

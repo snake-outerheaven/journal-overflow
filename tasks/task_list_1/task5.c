@@ -19,6 +19,8 @@ int main()
     size_t i;
     int nums[SIZE];
 
+    srand(time(0));
+
     for (i = 0; i < SIZE; i++)
         nums[i] = rand() % MAX;
 
