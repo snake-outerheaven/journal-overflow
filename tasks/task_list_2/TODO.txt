@@ -1,0 +1,31 @@
+1) Fazer um programa que apresente uma sequência de números
+entre 20 e 50 inclusive.
+
+2)Fazer um programa que apresente todos os múltiplos de 4 entre 1
+e 100 inclusive.
+
+3)Fazer um programa que apresente quantos números são
+múltiplos de 7 entre 100 e 500.
+
+4)Fazer um programa que receba o intervalo (a, b) e um número c,
+apresente quantos são os múltiplos de c no intervalo.
+
+5)Fazer um programa que apresente os N primeiros números da
+série de Fibonacci (0-1-1-2-3-5...)
+
+6)Faça um programa que gere aleatoriamente dez números entre
+20 e 50 e apresente a soma destes números.
+
+7)Gere aleatoriamente 30 números entre -10 e 30, em seguida
+apresente a sua média.
+
+8)Faça um programa que gere aleatoriamente 5 números entre 0 e
+10 e seus respectivos pesos (1, 2 ou 3) ao final calcule sua média
+ponderada.
+
+9)Escreva um programa que gere 10 números inteiros entre 0 e 100
+e escreva o menor e o maior valor .
+
+10)Faça um programa que gere um número inteiro positivo par N
+menor que 100 e imprima todos os números pares de 0 até N em
+ordem crescente.
