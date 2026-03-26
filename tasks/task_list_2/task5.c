@@ -44,8 +44,7 @@ int main()
 	for(i = 0; i < MAXSPORT; ++i)
 		for(y = 0; y < 2; ++y)
 			printf("O percentual de jovens do gênero %s "
-					"no esporte %s "
-					"é %.2f.\n",
+					"no esporte %s é %.2f.\n",
 					(y) ? "Masculino" : "Feminino",
 					sports[i],
 					percs[i][y]);
