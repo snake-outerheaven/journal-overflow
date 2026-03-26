@@ -24,8 +24,8 @@ void gen_avg(int[], int[], float[]);
 int main()
 {
     size_t i;
-    float avg[2];
     int age[QUANTITY], gender[QUANTITY];
+    float avg[2];
 
     setlocale(LC_ALL, "pt_BR.UTF-8");
 
