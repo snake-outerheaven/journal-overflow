@@ -62,11 +62,14 @@ int map_kill(map_t **this)
 
 int map_insert(map_t *this, const char *key, const char *value)
 {
+    size_t index;
+    node_t *walker;
+
     if (!this || !key || !value)
         return 1;
 
-    size_t index = hash(key) % this->capacity;
-    node_t *walker = this->mapped[index];
+    index = hash(key) % this->capacity;
+    walker = this->mapped[index];
 
     if (walker)
     {
@@ -78,7 +81,7 @@ int map_insert(map_t *this, const char *key, const char *value)
                 return 0;
             }
             if (!walker->next)
-                break; // Para no último nó
+                break;
             walker = walker->next;
         }
     }
@@ -96,7 +99,7 @@ int map_insert(map_t *this, const char *key, const char *value)
 
     if (!this->mapped[index])
         this->mapped[index] = new;
-        
+
     else
         walker->next = new;
 
