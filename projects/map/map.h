@@ -21,20 +21,25 @@ int map_kill(map_t **);
 
 // inserts a new key-value pair into the data structure.
 // if the key already exists, its value is updated.
-// returns non-zero on success, zero on failure.
+// returns zero on success, non-zero on failure.
 int map_insert(map_t *, const char *, const char *);
 
 // retrieves the value associated with a given key.
-// returns NULL if the key is not found.
-void *map_get(const map_t *, const char *);
+// returns non-zero if the key is not found.
+// zero otherwise
+int map_get(const map_t *, const char *, char *);
 
 // removes a key-value pair from the data structure.
-// returns non-zero if the key was found and removed, zero otherwise.
+// returns zero if the key was found and removed, non-zero otherwise.
 int map_remove(map_t *, const char *);
 
 // checks if a given key exists in the data structure.
-// returns non-zero if found, zero otherwise.
+// returns zero if found, non-zero otherwise.
 int map_contains(const map_t *, const char *);
+
+// print map to stdout
+// returns zero if map prints correctly, non-zero otherwise. 
+int map_print(const map_t *);
 
 // returns the number of key-value pairs currently stored.
 size_t map_size(const map_t *);
