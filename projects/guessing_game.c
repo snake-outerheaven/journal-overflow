@@ -177,7 +177,7 @@ int save(const int tries, const int random)
 
     strftime(timestamp, sizeof(timestamp), "%d/%m/%Y %H:%M:%S", tm_info);
 
-    fp = fopen("guessing_game_log.txt", "a");
+    fp = fopen("guessing_game_log.txt", "a+");
 
     if (!fp)
         return BAD_SAVE;
