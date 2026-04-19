@@ -5,7 +5,7 @@
 // the hash using the formula: hash * 33 + c.
 // simple and fast to compute, produces a good distribution
 // for typical string keys.
-size_t hash_string(const char *str)
+size_t hash(const char *str)
 {
     size_t hash = 5381;
     int c;

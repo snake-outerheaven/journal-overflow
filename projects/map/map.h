@@ -14,7 +14,7 @@ typedef struct map_t map_t;
 
 // initializes a pointer of the data structure
 // on the heap.
-map_t *map_init(size_t);
+map_t *map_init(void);
 
 // kills the data struct on the heap and nulls the caller's pointer.
 int map_kill(map_t **);
