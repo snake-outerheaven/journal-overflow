@@ -36,18 +36,22 @@ map_t *map_init(void)
 
 int map_kill(map_t **this)
 {
+    map_t *temp;
+    node_t *curr;
+    node_t *next;
+
     if (!this || !*this)
         return 1;
 
-    map_t *temp = *this;
+    temp = *this;
 
     for (size_t i = 0; i < MAX_CAPACITY; ++i)
     {
-        node_t *curr = temp->mapped[i];
+        curr = temp->mapped[i];
 
         while (curr)
         {
-            node_t *next = curr->next;
+            next = curr->next;
             free(curr);
             curr = next;
         }
