@@ -50,11 +50,11 @@ int map_kill(map_t **this)
       curr = temp->mapped[i];
 
       while (curr)
-        {
+	{
 	  next = curr->next;
 	  free(curr);
 	  curr = next;
-        }
+	}
     }
 
   free(temp);
@@ -78,16 +78,16 @@ int map_insert(map_t *this, const char *key, const char *value)
   if (walker)
     {
       while (1)
-        {
+	{
 	  if (!strcmp(walker->key, key))
-            {
+	    {
 	      strcpy(walker->value, value);
 	      return 0;
-            }
+	    }
 	  if (!walker->next)
 	    break;
 	  walker = walker->next;
-        }
+	}
     }
 
   node_t *new = malloc(sizeof(*new));
@@ -107,6 +107,8 @@ int map_insert(map_t *this, const char *key, const char *value)
   else
     walker->next = new;
 
+  this->size++;
+
   return 0;
 }
 
@@ -114,40 +116,36 @@ int map_remove(map_t *this, const char *key)
 {
   size_t index;
 
-  node_t *prev;
-  node_t *next;
+  node_t *prev = NULL;
   node_t *current;
 
   if (!this || !key)
     return 1;
 
-  index = hash(key);
+  index = hash(key) % this->capacity;
 
   current = this->mapped[index];
 
-
-  if (current)
+  while (current)
     {
-      while (1)
+      if (!strcmp(key, current->key))
 	{
 
-	  if (!current)
-	    return 2; /* it wasn't possible to find the key, duh */
-	  	  
-	  if (!strcmp(key, current->next->key))
-	    {
-	      prev = current;
-	      
-	      current = current->next;
-	      
-	      next = current->next;
-	      
-	      free(current);
+	  if(!prev)
+	    this->mapped[index] = current->next;
 
-	      prev->next = next;
-	      /* */
-	    }
-	    
-	  current = current->next;
+	  else
+	    prev->next = current->next;
+
+
+	  free(current);
+	  this->size--;
+	  return 0;
 	}
+
+      prev = current;
+      current = current->next;
     }
+
+  return 2;
+}
