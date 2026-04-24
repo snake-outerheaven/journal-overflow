@@ -109,3 +109,45 @@ int map_insert(map_t *this, const char *key, const char *value)
 
   return 0;
 }
+
+int map_remove(map_t *this, const char *key)
+{
+  size_t index;
+
+  node_t *prev;
+  node_t *next;
+  node_t *current;
+
+  if (!this || !key)
+    return 1;
+
+  index = hash(key);
+
+  current = this->mapped[index];
+
+
+  if (current)
+    {
+      while (1)
+	{
+
+	  if (!current)
+	    return 2; /* it wasn't possible to find the key, duh */
+	  	  
+	  if (!strcmp(key, current->next->key))
+	    {
+	      prev = current;
+	      
+	      current = current->next;
+	      
+	      next = current->next;
+	      
+	      free(current);
+
+	      prev->next = next;
+	      /* */
+	    }
+	    
+	  current = current->next;
+	}
+    }
