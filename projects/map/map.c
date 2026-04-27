@@ -149,3 +149,33 @@ int map_remove(map_t *this, const char *key)
 
   return 2;
 }
+
+int map_get(const map_t *this, const char *key, char *out)
+{
+  size_t index;
+
+  node_t *current;
+
+  if (!this || !key)
+    return 1;
+
+  index = hash(key) % this->capacity;
+
+  if (!this->mapped[index])
+    return 2;
+
+  current = this->mapped[index];
+
+  while (current)
+    {
+      if (!strcmp(key, current->key))
+	{
+	  strcpy(out, current->value);
+	  return 0;
+	}
+
+      current = current->next;
+    }
+
+  return 2;
+}
