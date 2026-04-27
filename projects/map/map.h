@@ -24,14 +24,14 @@ int map_kill(map_t **);
 // returns zero on success, non-zero on failure.
 int map_insert(map_t *, const char *, const char *);
 
+// removes a key-value pair from the data structure.
+// returns zero if the key was found and removed, non-zero otherwise.
+int map_remove(map_t *, const char *);
+
 // retrieves the value associated with a given key.
 // returns non-zero if the key is not found.
 // zero otherwise
 int map_get(const map_t *, const char *, char *);
-
-// removes a key-value pair from the data structure.
-// returns zero if the key was found and removed, non-zero otherwise.
-int map_remove(map_t *, const char *);
 
 // checks if a given key exists in the data structure.
 // returns zero if found, non-zero otherwise.
