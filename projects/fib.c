@@ -32,7 +32,7 @@ main(int argc, char *argv[])
       b = prox;
     }
 
-  puts("");
+  putchar('\n');
   
   return EXIT_SUCCESS;
 }
