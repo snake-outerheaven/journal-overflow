@@ -95,7 +95,7 @@ main()
 	  // imprimido no final.
         }
 
-      if(val < valMenorV)
+      if (val < valMenorV)
 	{
 	  valMenorV = val; // salva menor valor.
 	  strcpy(codeMenorV, code);
@@ -124,10 +124,10 @@ main()
         totLoc1++;
 
       if (day < 15)
-	if(loc) // nova contagem, agora certo.
+	if (loc) // nova contagem, agora certo.
 	  totLoc115++;
 
-      if(!loc)
+      if (!loc)
 	sumDiasEstadual += day;
       else
 	sumDiasInterestadual += day;
