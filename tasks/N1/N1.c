@@ -11,7 +11,8 @@
 #define DAY_MAX 30
 #define DAY_MIN 1
 
-int main()
+int
+main()
 {
   size_t cont = 0;
 
@@ -21,17 +22,19 @@ int main()
 
   char codeMaiorV[20], mesMaiorV[20];
   int tsMaiorV = 0, locMaiorV = 0, valMaiorV = -1, dayMaiorV = 0,
-    valMaiorVS = 0; // valMaiorV setado para -1 pois é um valor coringa útil
+  valMaiorVS = 0; // valMaiorV setado para -1 pois é um valor coringa útil
   // para comparações entre iterações
 
   // salvando as menores notas
   char codeMenorV[20], mesMenorV[20];
   int tsMenorV = 0, locMenorV = 0, valMenorV = 100000, dayMenorV = 0,
-    valMenorVS = 0;
+  valMenorVS = 0;
 
   int sumDiasEstadual = 0, sumDiasInterestadual = 0;
 
-  float totLoc115 = 0, tot15 = 0;
+  int totLoc1 = 0;
+
+  float totLoc115 = 0;
   float contTs1 = 0, contTs0 = 0;
   float sumTs1 = 0, sumTs0 = 0, sumTsTot = 0;
 
@@ -117,14 +120,12 @@ int main()
 
       sumTsTot += day;
 
-    
-      if (day < 15)
-        {
-	  tot15++;
+      if (loc)
+        totLoc1++;
 
-	  if(loc) // nova contagem, agora certo.
-	    totLoc115++;
-	}
+      if (day < 15)
+	if(loc) // nova contagem, agora certo.
+	  totLoc115++;
 
       if(!loc)
 	sumDiasEstadual += day;
@@ -138,7 +139,7 @@ int main()
       cont++, codenum++;
     }
 
-  percNt15Int = totLoc115 / tot15 * 100; // percentual de loc 1 com day < 15 entre todas as notas com dias < 15
+  percNt15Int = totLoc115 / totLoc1 * 100; // percentual de loc 1 com day < 15 entre todas as notas com loc 1
   avgDayTot = sumTsTot / N;     // média de dias de todas as notas
   avgDayTs0 = sumTs0 / contTs0; // media de dias de ts 0
   avgDayTs1 = sumTs1 / contTs1; // media de dias de ts 1
@@ -153,7 +154,6 @@ int main()
   printf("Percentual de nts com duração menor q 15 dias e interestaduais: "
 	 "%.2f%%\n",
 	 percNt15Int);
-  printf("Total de notas com dias menores que 15: %.2f\n", tot15);
   printf("Média de dias de todas as nts: %.2f\n", avgDayTot);
   printf("Média de dias das nts de tipo 0: %.2f\n", avgDayTs0);
   printf("Média de dias das nts de tipo 1: %.2f\n", avgDayTs1);
