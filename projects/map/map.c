@@ -9,173 +9,171 @@
 
 typedef struct node_t
 {
-  char key[MAXBUF];
-  char value[MAXBUF];
-  struct node_t *next;
+    char key[MAXBUF];
+    char value[MAXBUF];
+    struct node_t *next;
 } node_t;
 
 struct map_t
 {
-  node_t *mapped[MAX_CAPACITY];
-  size_t size;
-  size_t capacity;
+    node_t *mapped[MAX_CAPACITY];
+    size_t size;
+    size_t capacity;
 };
 
 map_t *map_init(void)
 {
-  map_t *map = calloc(1, sizeof(map_t));
+    map_t *map = calloc(1, sizeof(map_t));
 
-  if (!map)
-    return NULL;
+    if (!map)
+        return NULL;
 
-  map->size = 0;
-  map->capacity = MAX_CAPACITY;
+    map->size = 0;
+    map->capacity = MAX_CAPACITY;
 
-  return map;
+    return map;
 }
 
 int map_kill(map_t **this)
 {
-  map_t *temp;
-  node_t *curr;
-  node_t *next;
+    map_t *temp;
+    node_t *curr;
+    node_t *next;
 
-  if (!this || !*this)
-    return 1;
+    if (!this || !*this)
+        return 1;
 
-  temp = *this;
+    temp = *this;
 
-  for (size_t i = 0; i < MAX_CAPACITY; ++i)
+    for (size_t i = 0; i < MAX_CAPACITY; ++i)
     {
-      curr = temp->mapped[i];
+        curr = temp->mapped[i];
 
-      while (curr)
-	{
-	  next = curr->next;
-	  free(curr);
-	  curr = next;
-	}
+        while (curr)
+        {
+            next = curr->next;
+            free(curr);
+            curr = next;
+        }
     }
 
-  free(temp);
+    free(temp);
 
-  *this = NULL;
+    *this = NULL;
 
-  return 0;
+    return 0;
 }
 
 int map_insert(map_t *this, const char *key, const char *value)
 {
-  size_t index;
-  node_t *walker;
+    size_t index;
+    node_t *walker;
 
-  if (!this || !key || !value)
-    return 1;
+    if (!this || !key || !value)
+        return 1;
 
-  index = hash(key) % this->capacity;
-  walker = this->mapped[index];
+    index = hash(key) % this->capacity;
+    walker = this->mapped[index];
 
-  if (walker)
+    if (walker)
     {
-      while (1)
-	{
-	  if (!strcmp(walker->key, key))
-	    {
-	      strcpy(walker->value, value);
-	      return 0;
-	    }
-	  if (!walker->next)
-	    break;
-	  walker = walker->next;
-	}
+        while (1)
+        {
+            if (!strcmp(walker->key, key))
+            {
+                strcpy(walker->value, value);
+                return 0;
+            }
+            if (!walker->next)
+                break;
+            walker = walker->next;
+        }
     }
 
-  node_t *new = malloc(sizeof(*new));
+    node_t *new = malloc(sizeof(*new));
 
-  if (!new)
-    return 2;
+    if (!new)
+        return 2;
 
-  strcpy(new->key, key);
+    strcpy(new->key, key);
 
-  strcpy(new->value, value);
+    strcpy(new->value, value);
 
-  new->next = NULL;
+    new->next = NULL;
 
-  if (!this->mapped[index])
-    this->mapped[index] = new;
+    if (!this->mapped[index])
+        this->mapped[index] = new;
 
-  else
-    walker->next = new;
+    else
+        walker->next = new;
 
-  this->size++;
+    this->size++;
 
-  return 0;
+    return 0;
 }
 
 int map_remove(map_t *this, const char *key)
 {
-  size_t index;
+    size_t index;
 
-  node_t *prev = NULL;
-  node_t *current;
+    node_t *prev = NULL;
+    node_t *current;
 
-  if (!this || !key)
-    return 1;
+    if (!this || !key)
+        return 1;
 
-  index = hash(key) % this->capacity;
+    index = hash(key) % this->capacity;
 
-  current = this->mapped[index];
+    current = this->mapped[index];
 
-  while (current)
+    while (current)
     {
-      if (!strcmp(key, current->key))
-	{
+        if (!strcmp(key, current->key))
+        {
+            if (!prev)
+                this->mapped[index] = current->next;
 
-	  if(!prev)
-	    this->mapped[index] = current->next;
+            else
+                prev->next = current->next;
 
-	  else
-	    prev->next = current->next;
+            free(current);
+            this->size--;
+            return 0;
+        }
 
-
-	  free(current);
-	  this->size--;
-	  return 0;
-	}
-
-      prev = current;
-      current = current->next;
+        prev = current;
+        current = current->next;
     }
 
-  return 2;
+    return 2;
 }
 
 int map_get(const map_t *this, const char *key, char *out)
 {
-  size_t index;
+    size_t index;
 
-  node_t *current;
+    node_t *current;
 
-  if (!this || !key)
-    return 1;
+    if (!this || !key)
+        return 1;
 
-  index = hash(key) % this->capacity;
+    index = hash(key) % this->capacity;
 
-  if (!this->mapped[index])
-    return 2;
+    if (!this->mapped[index])
+        return 2;
 
-  current = this->mapped[index];
+    current = this->mapped[index];
 
-  while (current)
+    while (current)
     {
-      if (!strcmp(key, current->key))
-	{
-	  strcpy(out, current->value);
-	  return 0;
-	}
+        if (!strcmp(key, current->key))
+        {
+            strcpy(out, current->value);
+            return 0;
+        }
 
-      current = current->next;
+        current = current->next;
     }
 
-  return 2;
+    return 2;
 }

@@ -16,7 +16,7 @@ int main()
         }
     }
 
-    printf("Tamanho final: %lu | Capacidade: %lu\n", vec_size(v), vec_cap(v));
+    printf("Tamanho final: %llu | Capacidade: %llu\n", vec_size(v), vec_cap(v));
 
     vec_kill(&v);
     return 0;
