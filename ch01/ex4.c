@@ -4,27 +4,25 @@
  * Write a program to print the corresponding Celsius to Fahrenheit table.
  */
 
-int
-main(void)
+int main(void)
 {
-  int fahr, celsius;
-  int lower, upper, step;
+    int fahr, celsius;
+    int lower, upper, step;
 
-  lower = 0;
-  upper = 300;
-  step = 20;
+    lower = 0;
+    upper = 300;
+    step = 20;
 
-  celsius = lower;
+    celsius = lower;
 
+    printf("|\tCelsius\tFahrenheit\t|\n");
 
-  printf("|\tCelsius\tFahrenheit\t|\n");
-
-  while (celsius <= upper)
+    while (celsius <= upper)
     {
-      fahr = 9 * (celsius + 32) / 5;
-      printf("|\t%d\t%d\t|\n", celsius, fahr);
-      celsius += step;
+        fahr = 9 * (celsius + 32) / 5;
+        printf("|\t%d\t%d\t|\n", celsius, fahr);
+        celsius += step;
     }
 
-  return 0;
+    return 0;
 }
