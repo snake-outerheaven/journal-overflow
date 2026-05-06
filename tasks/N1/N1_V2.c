@@ -45,5 +45,9 @@ int main(void)
 
     // variáveis para armazenar o percentual de notas especial + média de dias.
     float perNtLoc115, avgdayTot, avgDayTs1, avgDayTs0;
+
+    setlocale(LC_ALL, "pt_BR.UTF-8"); // seta o terminal para português brasileiro UTF-8
+    srand(time(NULL));
+
     return 0;
 }
