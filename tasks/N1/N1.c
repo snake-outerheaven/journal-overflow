@@ -146,7 +146,7 @@ int main()
     avgDayTs1 = sumTs1 / contTs1; // media de dias de ts 1
     avg39 = val39 / 39;           // média dos valores das 39 iniciais
     avg41 = val41 / 41; // média dos valores das 2 notas com mes outubro.
-    avg43 = val43 / 43; // total menos as 41 iniciais
+    avg43 = val43 / 43; // total menos 80...
 
     puts("");
     puts("");
