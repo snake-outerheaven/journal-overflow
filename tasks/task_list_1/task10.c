@@ -9,25 +9,26 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main()
+int
+main ()
 {
-    double sal, prest;
+  double sal, prest;
 
-    setlocale(LC_ALL, "pt_BR.UTF-8");
+  setlocale (LC_ALL, "pt_BR.UTF-8");
 
-    srand(time(NULL));
+  srand (time (NULL));
 
-    sal = (double)(rand() % (15000)) + 500;
+  sal = (double)(rand () % (15000)) + 500;
 
-    prest = (double)(rand() % (7000)) + 500;
+  prest = (double)(rand () % (7000)) + 500;
 
-    printf("Salário gerado: %.2lf\tPrestação gerada: %.2lf\n", sal, prest);
+  printf ("Salário gerado: %.2lf\tPrestação gerada: %.2lf\n", sal, prest);
 
-    if (((prest / sal) * 100.0) <= 30.0)
-        printf("Empréstimo pode ser feito.\n");
+  if (((prest / sal) * 100.0) <= 30.0)
+    printf ("Empréstimo pode ser feito.\n");
 
-    else
-        printf("Empréstimo não pode ser feito.\n");
+  else
+    printf ("Empréstimo não pode ser feito.\n");
 
-    return 0;
+  return 0;
 }

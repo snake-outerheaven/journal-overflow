@@ -14,34 +14,34 @@ typedef struct map_t map_t;
 
 // initializes a pointer of the data structure
 // on the heap.
-map_t *map_init(void);
+map_t *map_init (void);
 
 // kills the data struct on the heap and nulls the caller's pointer.
-int map_kill(map_t **);
+int map_kill (map_t **);
 
 // inserts a new key-value pair into the data structure.
 // if the key already exists, its value is updated.
 // returns zero on success, non-zero on failure.
-int map_insert(map_t *, const char *, const char *);
+int map_insert (map_t *, const char *, const char *);
 
 // removes a key-value pair from the data structure.
 // returns zero if the key was found and removed, non-zero otherwise.
-int map_remove(map_t *, const char *);
+int map_remove (map_t *, const char *);
 
 // retrieves the value associated with a given key.
 // returns non-zero if the key is not found.
 // zero otherwise
-int map_get(const map_t *, const char *, char *);
+int map_get (const map_t *, const char *, char *);
 
 // checks if a given key exists in the data structure.
 // returns zero if found, non-zero otherwise.
-int map_contains(const map_t *, const char *);
+int map_contains (const map_t *, const char *);
 
 // print map to stdout
-// returns zero if map prints correctly, non-zero otherwise. 
-int map_print(const map_t *);
+// returns zero if map prints correctly, non-zero otherwise.
+int map_print (const map_t *);
 
 // returns the number of key-value pairs currently stored.
-size_t map_size(const map_t *);
+size_t map_size (const map_t *);
 
 #endif

@@ -10,113 +10,116 @@
 
 typedef struct Node
 {
-    int value;
-    struct Node *next;
+  int value;
+  struct Node *next;
 } Node;
 
-Node *list_init();
-int list_append(Node **, int);
-void list_free(Node **);
-void list_print(const Node *);
+Node *list_init ();
+int list_append (Node **, int);
+void list_free (Node **);
+void list_print (const Node *);
 
-int main()
+int
+main ()
 {
-    size_t i;
+  size_t i;
 
-    Node *n;
+  Node *n;
 
-    n = list_init();
+  n = list_init ();
 
-    for (i = 1; i < MAX; i++)
-	    if(list_append(&n, (int)i))
-			    puts("Erro ao adicionar número!");
+  for (i = 1; i < MAX; i++)
+    if (list_append (&n, (int)i))
+      puts ("Erro ao adicionar número!");
 
+  list_print (n);
 
-    list_print(n);
+  list_free (&n);
 
-    list_free(&n);
+  putchar ('\n');
 
-    putchar('\n');
+  puts ("It just works.");
 
-    puts("It just works.");
-
-    return 0;
+  return 0;
 }
 
-Node *list_init()
+Node *
+list_init ()
 {
-	return NULL;
+  return NULL;
 }
 
-int list_append(Node **head, int value)
+int
+list_append (Node **head, int value)
 {
-    Node *current;
-    Node *new;
+  Node *current;
+  Node *new;
 
-    if (!head)
-        return 1;
+  if (!head)
+    return 1;
 
-    current = *head;
-    new = malloc(sizeof(Node));
+  current = *head;
+  new = malloc (sizeof (Node));
 
-    if (!new)
-        return 2;
+  if (!new)
+    return 2;
 
-    new->value = value;
-    new->next = NULL;
+  new->value = value;
+  new->next = NULL;
 
-    if(!*head)
+  if (!*head)
     {
-	    *head = new;
-	    return 0;
+      *head = new;
+      return 0;
     }
 
-
-    while (current->next)
+  while (current->next)
     {
-        current = current->next;
+      current = current->next;
     }
 
-    new->value = value;
-    new->next = NULL;
+  new->value = value;
+  new->next = NULL;
 
-    current->next = new;
+  current->next = new;
 
-    return 0;
+  return 0;
 }
 
-void list_free(Node **head)
+void
+list_free (Node **head)
 {
-    Node *temp;
-    Node *current;
+  Node *temp;
+  Node *current;
 
-    if (!head)
-        return;
+  if (!head)
+    return;
 
-    if (!*head)
-        return;
+  if (!*head)
+    return;
 
-    current = *head;
+  current = *head;
 
-    while (current)
+  while (current)
     {
-        temp = current->next;
-        free(current);
-        current = temp;
+      temp = current->next;
+      free (current);
+      current = temp;
     }
 
-    *head = NULL;
+  *head = NULL;
 }
 
-void list_print(const Node *head)
+void
+list_print (const Node *head)
 {
-    const Node *current;
+  const Node *current;
 
-    current = head;
+  current = head;
 
-    while (current->next)
+  while (current->next)
     {
-        printf("\t|%d|\t", current->value);
-        current = current->next;
+      printf ("\t|%d|\t", current->value);
+      current = current->next;
     }
 }

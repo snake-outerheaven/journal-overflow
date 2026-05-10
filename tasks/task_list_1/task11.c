@@ -10,39 +10,40 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main()
+int
+main ()
 {
-    double peso, altura, imc;
+  double peso, altura, imc;
 
-    setlocale(LC_ALL, "pt_BR.UTF-8");
+  setlocale (LC_ALL, "pt_BR.UTF-8");
 
-    srand(time(NULL));
+  srand (time (NULL));
 
-    altura = 1.55 + ((double)rand() / RAND_MAX) * (2.20 - 1.55);
-    peso = 55.0 + ((double)rand() / RAND_MAX) * (150.0 - 55.0);
+  altura = 1.55 + ((double)rand () / RAND_MAX) * (2.20 - 1.55);
+  peso = 55.0 + ((double)rand () / RAND_MAX) * (150.0 - 55.0);
 
-    imc = peso / (altura * altura);
+  imc = peso / (altura * altura);
 
-    printf("Peso gerado: %.2lf\tAltura gerada: %.2lf\tIMC calculado: %.2lf\n",
-           peso, altura, imc);
+  printf ("Peso gerado: %.2lf\tAltura gerada: %.2lf\tIMC calculado: %.2lf\n",
+          peso, altura, imc);
 
-    if (imc < 18.5)
-        printf("Indivíduo abaixo do peso.\n");
+  if (imc < 18.5)
+    printf ("Indivíduo abaixo do peso.\n");
 
-    else if (imc >= 18.5 && imc < 25.0)
-        printf("Indivíduo com peso normal.\n");
+  else if (imc >= 18.5 && imc < 25.0)
+    printf ("Indivíduo com peso normal.\n");
 
-    else if (imc >= 25 && imc < 30.0)
-        printf("Indivíduo com sobrepeso.\n");
+  else if (imc >= 25 && imc < 30.0)
+    printf ("Indivíduo com sobrepeso.\n");
 
-    else if (imc >= 30.0 && imc < 35.0)
-        printf("Indivíduo com Obesidade grau 1.\n");
+  else if (imc >= 30.0 && imc < 35.0)
+    printf ("Indivíduo com Obesidade grau 1.\n");
 
-    else if (imc >= 35.0 && imc < 40.0)
-        printf("Indivíduo com Obesidade grau 2.\n");
+  else if (imc >= 35.0 && imc < 40.0)
+    printf ("Indivíduo com Obesidade grau 2.\n");
 
-    else
-        printf("Indivíduoc om Obesidade Mórbida.\n");
+  else
+    printf ("Indivíduoc om Obesidade Mórbida.\n");
 
-    return 0;
+  return 0;
 }

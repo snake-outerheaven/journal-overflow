@@ -11,13 +11,13 @@
 
 typedef struct vector_t vector_t;
 
-vector_t *vec_init();
-int vec_kill(vector_t **);
+vector_t *vec_init ();
+int vec_kill (vector_t **);
 
-int vec_push(vector_t *, int);
-int vec_pop(vector_t *, int *);
+int vec_push (vector_t *, int);
+int vec_pop (vector_t *, int *);
 
-size_t vec_size(const vector_t *);
-size_t vec_cap(const vector_t *);
+size_t vec_size (const vector_t *);
+size_t vec_cap (const vector_t *);
 
 #endif

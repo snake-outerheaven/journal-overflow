@@ -5,19 +5,19 @@
 
 typedef struct stack Stack;
 
-Stack *stack_init(void);
-int stack_kill(Stack **);
+Stack *stack_init (void);
+int stack_kill (Stack **);
 
-int peek(const Stack *, int *);
-int peek_depth(const Stack *, size_t, int *);
-size_t get_size(const Stack *);
+int peek (const Stack *, int *);
+int peek_depth (const Stack *, size_t, int *);
+size_t get_size (const Stack *);
 
-int push(Stack *, int *);
-int pop(Stack *, int *);
+int push (Stack *, int *);
+int pop (Stack *, int *);
 
-int stack_print(const Stack *);
-int stack_to_array(const Stack *, int *);
+int stack_print (const Stack *);
+int stack_to_array (const Stack *, int *);
 
-int stack_invert(Stack *);
+int stack_invert (Stack *);
 
 #endif

@@ -11,20 +11,21 @@
 #define SIZE 2
 #define MAX 15
 
-int main()
+int
+main ()
 {
-    size_t i;
-    int nums[SIZE], sum = 0;
+  size_t i;
+  int nums[SIZE], sum = 0;
 
-    srand(time(NULL));
+  srand (time (NULL));
 
-    for (i = 0; i < SIZE; i++)
-        nums[i] = rand() % MAX;
+  for (i = 0; i < SIZE; i++)
+    nums[i] = rand () % MAX;
 
-    for (i = 0; i < SIZE; i++)
-        sum += nums[i];
+  for (i = 0; i < SIZE; i++)
+    sum += nums[i];
 
-    (sum > 20) ? printf("%d\n", sum + 8) : printf("%d\n", sum - 5);
+  (sum > 20) ? printf ("%d\n", sum + 8) : printf ("%d\n", sum - 5);
 
-    return 0;
+  return 0;
 }

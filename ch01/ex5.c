@@ -1,12 +1,12 @@
 #include <stdio.h>
 
 /*
-  Modify the temperature conversion program to print the table in reverse order,
-  that is, from 300 degrees to 0.
+  Modify the temperature conversion program to print the table in reverse
+  order, that is, from 300 degrees to 0.
  */
 
 int
-main(void)
+main (void)
 {
   int celsius, fahr;
   int upper, lower, step;
@@ -17,12 +17,12 @@ main(void)
 
   fahr = upper;
 
-  printf("\tF\tC\n");
+  printf ("\tF\tC\n");
 
   while (fahr > lower)
     {
       celsius = 5 * (fahr - 32) / 9;
-      printf("\t%d\t%d\n", fahr, celsius);
+      printf ("\t%d\t%d\n", fahr, celsius);
       fahr -= step;
     }
 

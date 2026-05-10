@@ -5,7 +5,7 @@
  */
 
 int
-main(void)
+main (void)
 {
   int fahr, celsius;
   int lower, upper, step;
@@ -16,12 +16,12 @@ main(void)
 
   celsius = lower;
 
-  printf("|\tCelsius\tFahrenheit\t|\n");
+  printf ("|\tCelsius\tFahrenheit\t|\n");
 
   while (celsius <= upper)
     {
       fahr = 9 * (celsius + 32) / 5;
-      printf("|\t%d\t%d\t|\n", celsius, fahr);
+      printf ("|\t%d\t%d\t|\n", celsius, fahr);
       celsius += step;
     }
 

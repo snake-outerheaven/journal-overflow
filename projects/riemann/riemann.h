@@ -2,9 +2,7 @@
 #define RIEMANN_H
 #include <stddef.h>
 
-typedef double (*MathFunc)(double);
+typedef double (*MathFunc) (double);
 
-
-double riemann(MathFunc, const double, const double, const size_t);
+double riemann (MathFunc, const double, const double, const size_t);
 #endif
-

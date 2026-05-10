@@ -1,24 +1,25 @@
 #include <stdio.h>
 
-int main(void)
+int
+main (void)
 {
-    char readbuf[10];
-    FILE *fp;
+  char readbuf[10];
+  FILE *fp;
 
-    fp = fopen("text.txt", "w+");
+  fp = fopen ("text.txt", "w+");
 
-    if (!fp)
-        return 1;
+  if (!fp)
+    return 1;
 
-    fprintf(fp, "Hello file management on C!\n");
-    
-    rewind(fp);
+  fprintf (fp, "Hello file management on C!\n");
 
-    puts("Here's what is on the file: ");
+  rewind (fp);
 
-    while (fgets(readbuf, sizeof(readbuf), fp))
-        printf("%s", readbuf);
+  puts ("Here's what is on the file: ");
 
-    fclose(fp);
-    return 0;
+  while (fgets (readbuf, sizeof (readbuf), fp))
+    printf ("%s", readbuf);
+
+  fclose (fp);
+  return 0;
 }

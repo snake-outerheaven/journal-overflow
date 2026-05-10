@@ -1,33 +1,35 @@
-// 3)Fazer um programa que apresente quantos números são 
+// 3)Fazer um programa que apresente quantos números são
 // múltiplos de 7 entre 100 e 500.
 
 #include <locale.h>
 #include <stdio.h>
 
-int main()
+int
+main ()
 {
-	int i, num, count;
+  int i, num, count;
 
-	setlocale(LC_ALL, "pt_BR.UTF-");
+  setlocale (LC_ALL, "pt_BR.UTF-");
 
-	i = 500 - 100 + 1; // i encapsula o número total de itens a serem contados
-	num = 100;
-	count = 0;
+  i = 500 - 100 + 1; // i encapsula o número total de itens a serem contados
+  num = 100;
+  count = 0;
 
-	while(i > 0)
-	{
-		if(!(num % 7))
-		{
-			printf("|%d|\n", num);
-			count++;
-		}
+  while (i > 0)
+    {
+      if (!(num % 7))
+        {
+          printf ("|%d|\n", num);
+          count++;
+        }
 
-		num++;
-		i--;
-	}
+      num++;
+      i--;
+    }
 
-	printf("Existem %d números divisíveis por 7"
-			" entre 100 e 500.\n", count);
+  printf ("Existem %d números divisíveis por 7"
+          " entre 100 e 500.\n",
+          count);
 
-	return 0;
+  return 0;
 }

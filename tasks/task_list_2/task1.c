@@ -3,19 +3,19 @@
 
 #include <stdio.h>
 
-int main()
+int
+main ()
 {
-	int i, num;
+  int i, num;
 
-	i = 0;
-	num = 20;
+  i = 0;
+  num = 20;
 
-	while(i <= 30)
-	{
-		printf("|%d|\n", num);
-		num++, i++;
-	}
+  while (i <= 30)
+    {
+      printf ("|%d|\n", num);
+      num++, i++;
+    }
 
-	return 0;
+  return 0;
 }
-

@@ -1,8 +1,8 @@
 ---
-# Allman BSD style for C
-BasedOnStyle: LLVM
-IndentWidth: 4
-BreakBeforeBraces: Allman
+BasedOnStyle: GNU
+IndentWidth: 2
+BreakBeforeBraces: GNU
 AllowShortFunctionsOnASingleLine: None
 KeepEmptyLinesAtTheStartOfBlocks: false
+ColumnLimit: 79
 ---

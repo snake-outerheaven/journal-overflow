@@ -10,27 +10,27 @@
 
 #define MIN 0
 
-int main()
+int
+main ()
 {
-    size_t i;
-    int lados[3];
+  size_t i;
+  int lados[3];
 
-    srand(time(NULL));
+  srand (time (NULL));
 
-    for (i = 0; i < 3; i++)
-        lados[i] = rand() % (MAX - MIN + 1) + MIN;
+  for (i = 0; i < 3; i++)
+    lados[i] = rand () % (MAX - MIN + 1) + MIN;
 
-    if (lados[0] < lados[1] + lados[2] && lados[1] < lados[0] + lados[2] &&
-        lados[2] < lados[1] + lados[0])
+  if (lados[0] < lados[1] + lados[2] && lados[1] < lados[0] + lados[2]
+      && lados[2] < lados[1] + lados[0])
 
-        printf("É possível construir um triângulo com os lados"
-               " %d, %d, %d.\n",
-               lados[0], lados[1], lados[2]);
-
-    else
-        printf(
-            "Não é possível construir um triângulo com os lados %d, %d, %d.\n",
+    printf ("É possível construir um triângulo com os lados"
+            " %d, %d, %d.\n",
             lados[0], lados[1], lados[2]);
 
-    return 0;
+  else
+    printf ("Não é possível construir um triângulo com os lados %d, %d, %d.\n",
+            lados[0], lados[1], lados[2]);
+
+  return 0;
 }

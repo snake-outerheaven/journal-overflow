@@ -8,20 +8,21 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(void)
+int
+main (void)
 {
-    int num;
+  int num;
 
-    setlocale(LC_ALL, "pt_BR.UTF-8");
+  setlocale (LC_ALL, "pt_BR.UTF-8");
 
-    srand((unsigned int)time(NULL));
+  srand ((unsigned int)time (NULL));
 
-    num = (rand() % 80) + 1;
+  num = (rand () % 80) + 1;
 
-    if (!(num % 3))
-        printf("%d é múltiplo de 3.\n", num);
-    else
-        printf("%d não é múltiplo de 3.\n", num);
+  if (!(num % 3))
+    printf ("%d é múltiplo de 3.\n", num);
+  else
+    printf ("%d não é múltiplo de 3.\n", num);
 
-    return 0;
+  return 0;
 }

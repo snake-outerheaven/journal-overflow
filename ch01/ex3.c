@@ -1,11 +1,12 @@
 #include <stdio.h>
 
 /*
- *  Modify the temperature conversion program to print a heading above the table.
+ *  Modify the temperature conversion program to print a heading above the
+ * table.
  */
 
 int
-main(void)
+main (void)
 {
   int fahr, celsius;
   int lower, upper, step;
@@ -16,14 +17,14 @@ main(void)
 
   fahr = lower;
 
-  printf("Celsius\tFahrenheit\n");
+  printf ("Celsius\tFahrenheit\n");
 
   while (fahr <= upper)
     {
-      celsius = 5 * (fahr - 32) / 9; /* this is done to force proper integer division */
-      printf("%d\t%d\n", celsius, fahr);
+      celsius = 5 * (fahr - 32)
+                / 9; /* this is done to force proper integer division */
+      printf ("%d\t%d\n", celsius, fahr);
       fahr += step;
     }
   return 0;
 }
-

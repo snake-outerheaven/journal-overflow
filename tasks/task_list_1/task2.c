@@ -1,6 +1,6 @@
 // 2 – Fazer um programa que receba duas notas N1, N2 e o percentual de
-// Frequência de um aluno e verifique a situação do aluno: (Aprovado – Reprovado
-// – Prova Final)
+// Frequência de um aluno e verifique a situação do aluno: (Aprovado –
+// Reprovado – Prova Final)
 
 #include <stddef.h>
 #include <stdio.h>
@@ -20,61 +20,68 @@
 
 #define FINAL_CONTEXT_MIN_AVG NEEDEDAVG - 1.0F
 
-float gen_grade();
-float gen_freq();
-float gen_avg(float[]);
+float gen_grade ();
+float gen_freq ();
+float gen_avg (float[]);
 
-int main()
+int
+main ()
 {
-    size_t i;
-    float n[NGRADES];
-    float avg;
-    float freq;
+  size_t i;
+  float n[NGRADES];
+  float avg;
+  float freq;
 
-    srand(time(NULL));
+  srand (time (NULL));
 
-    for (i = 0; i < NGRADES; i++)
-        n[i] = gen_grade();
+  for (i = 0; i < NGRADES; i++)
+    n[i] = gen_grade ();
 
-    freq = gen_freq();
+  freq = gen_freq ();
 
-    avg = gen_avg(n);
+  avg = gen_avg (n);
 
-    if (avg >= NEEDEDAVG && freq >= NEEDEDFREQ)
-        printf("APROVADO COM MEDIA %.2f E "
-			"FREQUENCIA %.2f.\n", avg, freq);
+  if (avg >= NEEDEDAVG && freq >= NEEDEDFREQ)
+    printf ("APROVADO COM MEDIA %.2f E "
+            "FREQUENCIA %.2f.\n",
+            avg, freq);
 
-    else if ((avg < NEEDEDAVG && avg >= FINAL_CONTEXT_MIN_AVG) &&
-             freq >= NEEDEDFREQ)
-        printf("PROVA FINAL. MEDIA %.2f "
-			"E FREQUENCIA %.2f,\n", avg, freq);
-    else
-        printf("REPROVADO COM MEDIA %.2f E "
-			"FREQUENCIA %.2f.\n", avg, freq);
+  else if ((avg < NEEDEDAVG && avg >= FINAL_CONTEXT_MIN_AVG)
+           && freq >= NEEDEDFREQ)
+    printf ("PROVA FINAL. MEDIA %.2f "
+            "E FREQUENCIA %.2f,\n",
+            avg, freq);
+  else
+    printf ("REPROVADO COM MEDIA %.2f E "
+            "FREQUENCIA %.2f.\n",
+            avg, freq);
 
-    return 0;
+  return 0;
 }
 
-float gen_grade(void)
+float
+gen_grade (void)
 {
-    float r = rand() / (RAND_MAX * 1.0f);
-    return MINGRADE + r * (MAXGRADE - MINGRADE);
+  float r = rand () / (RAND_MAX * 1.0f);
+  return MINGRADE + r * (MAXGRADE - MINGRADE);
 }
 
-float gen_freq(void)
+float
+gen_freq (void)
 {
-    float r = rand() / (RAND_MAX * 1.0f);
-    return MINFREQ + r * (MAXFREQ - MINFREQ);
+  float r = rand () / (RAND_MAX * 1.0f);
+  return MINFREQ + r * (MAXFREQ - MINFREQ);
 }
 
-float gen_avg(float n[])
+float
+gen_avg (float n[])
 {
-    float sum = 0.0f;
+  float sum = 0.0f;
 
-    for (size_t i = 0; i < NGRADES; i++)
-        sum += n[i];
+  for (size_t i = 0; i < NGRADES; i++)
+    sum += n[i];
 
-    return sum / NGRADES;
+  return sum / NGRADES;
 }
 
 /*
