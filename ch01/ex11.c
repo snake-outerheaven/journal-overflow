@@ -11,7 +11,7 @@
  *
  * the program also have a issue where it only counts lines when it meets '\n'
  *
- * it also has a issue in that special signs (!#?:$%) are treated as parts of 
+ * it also has a issue in that special signs (!#?:$%) are treated as parts of
  * words.
  */
 
