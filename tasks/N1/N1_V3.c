@@ -147,7 +147,7 @@ main ()
           valMaiorV = nts[i].val;
         }
 
-      printf ("Nota %lu gerada: ",(unsigned long) i + 1);
+      printf ("Nota %lu gerada.\n",(unsigned long) i + 1);
       printf ("%-10s %-10s %-12s %-13s %-5d %-8d\n", nts[i].code, nts[i].month,
               nts[i].ts ? "Transporte" : "Fretamento",
               nts[i].loc ? "Interestadual" : "Estadual", nts[i].day,
