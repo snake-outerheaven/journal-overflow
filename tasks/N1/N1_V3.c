@@ -84,6 +84,8 @@ main ()
 
   srand (time (NULL));
 
+  num = rand () % (NUM_MAX - NUM_MIN + 1) + NUM_MIN;
+
   for (i = 0; i < N; ++i)
     {
       nts[i].ts = rand () % 2;
@@ -101,7 +103,7 @@ main ()
         {
           nts[i].val = nts[i].day * 300 + 500;
           sumTs0 += nts[i].day;
-          contTs1++;
+          contTs0++;
         }
 
       sumTsTot += nts[i].day;
@@ -141,6 +143,7 @@ main ()
           strcpy (mesMaiorV, nts[i].month);
           tsMaiorV = nts[i].ts;
           locMaiorV = nts[i].loc;
+	  dayMaiorV = nts[i].day;
           valMaiorV = nts[i].val;
         }
 
