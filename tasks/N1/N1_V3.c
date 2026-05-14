@@ -143,7 +143,7 @@ main ()
           strcpy (mesMaiorV, nts[i].month);
           tsMaiorV = nts[i].ts;
           locMaiorV = nts[i].loc;
-	  dayMaiorV = nts[i].day;
+          dayMaiorV = nts[i].day;
           valMaiorV = nts[i].val;
         }
 
