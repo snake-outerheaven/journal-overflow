@@ -52,7 +52,7 @@ int
 main ()
 {
   /* vetor de notas */
-  nt_t nts[N] = {0};
+  nt_t nts[N] = { 0 };
 
   size_t i;
 
@@ -77,7 +77,8 @@ main ()
   float val39 = 0, val41 = 0, val43 = 0;
   float avg39, avg41, avg43;
 
-  /* variáveis para armazenar o percentual de notas especial + média de dias. */
+  /* variáveis para armazenar o percentual de notas especial + média de dias.
+   */
   float perNtLoc115, avgDayTot, avgDayTs1, avgDayTs0;
 
   setlocale (LC_ALL, "pt_BR.UTF-8");
@@ -147,7 +148,7 @@ main ()
           valMaiorV = nts[i].val;
         }
 
-      printf ("Nota %lu gerada.\n",(unsigned long) i + 1);
+      printf ("Nota %lu gerada.\n", (unsigned long)i + 1);
       printf ("%-10s %-10s %-12s %-13s %-5d %-8d\n", nts[i].code, nts[i].month,
               nts[i].ts ? "Transporte" : "Fretamento",
               nts[i].loc ? "Interestadual" : "Estadual", nts[i].day,
@@ -166,16 +167,15 @@ main ()
 
   for (i = 0; i < N; ++i)
     printf ("%-10s %-10s %-12s %-13s %-5d %-8d\n", nts[i].code, nts[i].month,
-	    nts[i].ts ? "Transporte" : "Fretamento",
-	    nts[i].loc ? "Interestadual" : "Estadual", nts[i].day,
-	    nts[i].val);
+            nts[i].ts ? "Transporte" : "Fretamento",
+            nts[i].loc ? "Interestadual" : "Estadual", nts[i].day, nts[i].val);
 
   perNtLoc115 = (totLoc1 > 0) ? totLoc115 / totLoc1 * 100.0
-    : 0; /* percentual de nts com day < 15 & loc 1
-	  * de todas as notas loc 1 */
+                              : 0; /* percentual de nts com day < 15 & loc 1
+                                    * de todas as notas loc 1 */
   avgDayTot = sumTsTot / N; /* média de dias de todas as notas, não há operador
                              * ternário porque não há divisão por zero
-			     */
+                             */
   avgDayTs0 = (contTs0 > 0) ? sumTs0 / contTs0 : 0;
   avgDayTs1 = (contTs1 > 0) ? sumTs1 / contTs1 : 0;
   avg39 = val39 / 39;
@@ -192,18 +192,16 @@ main ()
   printf ("Média de dias de todas as nts: %.2f\n", avgDayTot);
   printf ("Média de dias das nts de tipo 0: %.2f\n", avgDayTs0);
   printf ("Média de dias das nts de tipo 1: %.2f\n", avgDayTs1);
-  printf("Média Setembro: %.2f\n", avg39);
-  printf("Média Outubro: %.2f\n", avg41);
-  printf("Média Novembro: %.2f\n", avg43);
+  printf ("Média Setembro: %.2f\n", avg39);
+  printf ("Média Outubro: %.2f\n", avg41);
+  printf ("Média Novembro: %.2f\n", avg43);
   printf ("Nota com maior valor: ");
   printf ("%-10s %-10s %-12s %-13s %-5d %-8d\n", codeMaiorV, mesMaiorV,
           tsMaiorV ? "Transporte" : "Fretamento",
           locMaiorV ? "Interestadual" : "Estadual", dayMaiorV, valMaiorV);
 
-
   return 0;
 }
-
 
 void
 bubble_nt (nt_t nts[], size_t siz)
@@ -215,9 +213,8 @@ bubble_nt (nt_t nts[], size_t siz)
     for (o = siz - 1; o >= i; o--)
       if (nts[o].val < nts[o - 1].val)
         {
-
           temp = nts[o];
           nts[o] = nts[o - 1];
-	  nts[o - 1] = temp;
+          nts[o - 1] = temp;
         }
 }
