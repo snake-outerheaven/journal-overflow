@@ -3,9 +3,8 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
-
-#define MAX_CAPACITY 35
 
 typedef struct node_t
 {
@@ -47,7 +46,7 @@ map_kill (map_t **this)
 
   temp = *this;
 
-  for (size_t i = 0; i < MAX_CAPACITY; ++i)
+  for (size_t i = 0; i < temp->capacity; ++i)
     {
       curr = temp->mapped[i];
 
@@ -72,7 +71,8 @@ map_insert (map_t *this, const char *key, const char *value)
   size_t index;
   node_t *walker;
 
-  if (!this || !key || !value)
+  if (!this || !key || !value || strlen (key) >= MAXBUF
+      || strlen (value) >= MAXBUF)
     return 1;
 
   index = hash (key) % this->capacity;
@@ -159,7 +159,7 @@ map_get (const map_t *this, const char *key, char *out)
 
   node_t *current;
 
-  if (!this || !key)
+  if (!this || !key || !out)
     return 1;
 
   index = hash (key) % this->capacity;
@@ -181,4 +181,59 @@ map_get (const map_t *this, const char *key, char *out)
     }
 
   return 2;
+}
+
+int
+map_contains (const map_t *this, const char *key)
+{
+  size_t index;
+  node_t *current;
+
+  if (!this || !key)
+    return 1;
+
+  index = hash (key) % this->capacity;
+  current = this->mapped[index];
+
+  while (current)
+    {
+      if (!strcmp (key, current->key))
+        return 0;
+      current = current->next;
+    }
+
+  return 2;
+}
+
+int
+map_print (const map_t *this)
+{
+  node_t *current;
+
+  if (!this)
+    return 1;
+
+  printf ("Map (size: %zu, capacity: %zu):\n", this->size, this->capacity);
+
+  for (size_t i = 0; i < this->capacity; ++i)
+    {
+      current = this->mapped[i];
+      if (current)
+        {
+          printf (" [%zu]: ", i);
+          while (current)
+            {
+              printf ("{%s: %s} ", current->key, current->value);
+              current = current->next;
+            }
+          printf ("\n");
+        }
+    }
+  return 0;
+}
+
+size_t
+map_size (const map_t *this)
+{
+  return this ? this->size : 0;
 }

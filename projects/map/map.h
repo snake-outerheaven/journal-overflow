@@ -6,8 +6,8 @@
 // max index for arrays
 #define MAXBUF 16
 
-// init capacity for the map
-#define INIT_CAPACITY 8
+// max number of buckets in the hash map
+#define MAX_CAPACITY 35
 
 // forward declaration, use it through pointers as implementation is on map.c
 typedef struct map_t map_t;

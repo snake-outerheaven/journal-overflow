@@ -11,6 +11,9 @@
 #define DAY_MIN 1
 #define DAY_MAX 30
 
+#define SEP_LIMIT 39
+#define OCT_LIMIT 80
+
 /*
  * função macro para obter facilmente o tamanho de um array de qualquer tipo
  * o tipo da função macro é determinado em tempo de compilação
@@ -75,6 +78,7 @@ main ()
 
   /* calcular valor médio em cima do mês */
   float val39 = 0, val41 = 0, val43 = 0;
+  int count39 = 0, count41 = 0, count43 = 0;
   float avg39, avg41, avg43;
 
   /* variáveis para armazenar o percentual de notas especial + média de dias.
@@ -117,25 +121,28 @@ main ()
             totLoc115++;
         }
 
-      if (i < 39)
+      if (i < SEP_LIMIT)
         {
-          sprintf (nts[i].month, "Setembro");
+          snprintf (nts[i].month, sizeof(nts[i].month), "Setembro");
           val39 += nts[i].val;
+          count39++;
         }
 
-      else if (i < 80)
+      else if (i < OCT_LIMIT)
         {
-          sprintf (nts[i].month, "Outubro");
+          snprintf (nts[i].month, sizeof(nts[i].month), "Outubro");
           val41 += nts[i].val;
+          count41++;
         }
 
       else
         {
-          sprintf (nts[i].month, "Novembro");
+          snprintf (nts[i].month, sizeof(nts[i].month), "Novembro");
           val43 += nts[i].val;
+          count43++;
         }
 
-      sprintf (nts[i].code, "NT%d%c", num, nts[i].ts ? 'T' : 'F');
+      snprintf (nts[i].code, sizeof(nts[i].code), "NT%d%c", num, nts[i].ts ? 'T' : 'F');
 
       if (nts[i].val > valCmp)
         {
@@ -178,9 +185,9 @@ main ()
                              */
   avgDayTs0 = (contTs0 > 0) ? sumTs0 / contTs0 : 0;
   avgDayTs1 = (contTs1 > 0) ? sumTs1 / contTs1 : 0;
-  avg39 = val39 / 39;
-  avg41 = val41 / 41;
-  avg43 = val43 / 43;
+  avg39 = (count39 > 0) ? val39 / count39 : 0;
+  avg41 = (count41 > 0) ? val41 / count41 : 0;
+  avg43 = (count43 > 0) ? val43 / count43 : 0;
 
   puts ("");
   puts ("");
