@@ -11,7 +11,7 @@
 int get_line (char[], int);
 
 int
-main ()
+main (void)
 {
   int len;
   int i;
