@@ -6,27 +6,59 @@
 #include <stdio.h>
 
 #define MAXLINE 64
-#define LINE_IN 1
-#define LINE_OUT 0
 
 int get_line (char ln[], int siz);
-void copy (char dest[], char src[]);
+int trim (char[]);
 
 int
 main (void)
 {
   char ln[MAXLINE] = { 0 };
-  char sanit_output[MAXLINE] = { 0 };
-  int len;
-  char c;
 
-  while ((len = get_line (ln, MAXLINE)))
-    {
-      /*
-        TODO: define inline state and outline state here, maybe use memmove to
-        move the valid line to the start, and just add a \0 after \n...
-      */
-    }
+  while (get_line (ln, MAXLINE) > 0)
+    if (trim (ln) > 0)
+      printf ("%s", ln);
 
   return 0;
+}
+
+int
+get_line (char ln[], int siz)
+{
+  int l, i;
+
+  for (i = 0; i < siz - 2 && (((l = getchar ()) != EOF)) && l != '\n'; i++)
+    ln[i] = l;
+
+  if (l == '\n')
+    {
+      ln[i] = l;
+      ln[++i] = '\0';
+    }
+  else
+    ln[i] = '\0';
+
+  return i;
+}
+
+int
+trim (char s[])
+{
+  int i;
+
+  for (i = 0; s[i] != '\0'; i++)
+    ;
+
+  i--; /* remove \0*/
+
+  while (i >= 0 && (s[i] == ' ' || s[i] == '\t' || s[i] == '\n'))
+    i--;
+
+  if (i < 0)
+    return 0;
+
+  s[i + 1] = '\n';
+  s[i + 2] = '\0';
+
+  return i + 2;
 }
