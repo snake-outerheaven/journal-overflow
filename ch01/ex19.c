@@ -63,12 +63,11 @@ reverse (char str[], int siz)
 {
   char temp;
   int j = 0, i = 0;
-  char *end = str;
 
   if (!str || !siz)
     return;
 
-  j = str_len (end);
+  j = str_len (str);
 
   j--;
 
