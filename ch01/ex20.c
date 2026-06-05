@@ -6,9 +6,11 @@
 
 #include <stdio.h>
 
+#define MAXLEN 300
 #define TABSIZE 4
 
 #define IN 1
 #define OUT 0
 
-/* continue later */
+int get_line (char[], int);
+int detab (char[]);
