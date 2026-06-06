@@ -18,17 +18,16 @@ main (void)
       if (c == '\n' || c == ' ' || c == '\t')
         {
           if (state == OUT)
-	    continue;
-	  putchar('\n');
+            continue;
+          putchar ('\n');
           state = OUT;
         }
       else
         {
-	  putchar(c);
-	  state = IN;
+          putchar (c);
+          state = IN;
         }
     }
 
   return 0;
 }
-

@@ -14,4 +14,3 @@
  * it also has a issue in that special signs (!#?:$%) are treated as parts of
  * words.
  */
-

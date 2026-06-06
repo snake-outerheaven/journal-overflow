@@ -13,22 +13,19 @@ main (void)
 
   while ((c = getchar ()) != EOF)
     {
-
       if (c == ' ')
-	{
-	  if (state)
-	    continue;
+        {
+          if (state)
+            continue;
           putchar (' ');
-	  state = 1;
+          state = 1;
         }
 
       else
-	{
-	  putchar (c);
-	  state = 0;
+        {
+          putchar (c);
+          state = 0;
         }
-
     }
   return 0;
 }
-

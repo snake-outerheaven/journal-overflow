@@ -19,10 +19,10 @@ main (void)
       else if (c == '\\')
         printf ("\\\\");
       else
-	putchar(c);
+        putchar (c);
     }
 
-  puts("EOF pressed, end of program.");
-  
+  puts ("EOF pressed, end of program.");
+
   return 0;
 }
