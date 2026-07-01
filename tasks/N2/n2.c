@@ -116,7 +116,8 @@ main (void)
   printf ("Percentual de Linhas de produção > 200 bar: %.2f%%\n", perc200);
   printf ("Percentual de Linhas de injeção < 220 bar: %.2f%%\n", perc220);
 
-  printf ("Percentual de dutos sem alertas de variação: %.2f%%\n", percZero);
+  printf ("Percentual de dutos de injeção sem alertas de variação: %.2f%%\n",
+          percZero);
 
   for (i = 1; i < N; ++i)
     for (x = N - 1; x >= i; x--)
@@ -133,6 +134,8 @@ main (void)
   for (i = 0; i < N; ++i)
     printf ("%-35s %-35d %-35.1f %-35d\n", dutos[i].code, dutos[i].func,
             dutos[i].bar, dutos[i].alert);
+
+  getchar ();
 
   return 0;
 }
