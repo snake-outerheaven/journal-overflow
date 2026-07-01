@@ -58,9 +58,6 @@ main (void)
       dutos[i].func = rand () % 2 + 1;
       dutos[i].alert = rand () % (MAXNUM - MINNUM + 1) + MINNUM;
 
-      if (dutos[i].alert == 0)
-        totZero++;
-
       if (dutos[i].func == 1)
         {
           sprintf (dutos[i].code, "P-%d", codnum);
@@ -83,6 +80,9 @@ main (void)
 
           if (dutos[i].bar < 220.0) // se pressao tubo 2 < 220 conto ele.
             tot220Bar++;
+
+          if (dutos[i].alert == 0)
+            totZero++;
         }
 
       codnum++;
