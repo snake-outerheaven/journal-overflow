@@ -5,7 +5,7 @@ int
 main (int argc, char *argv[])
 {
   size_t i;
-  unsigned long a = 1, b = 1, prox;
+  size_t a = 1, b = 1, prox;
   int n;
 
   if (argc < 2)
