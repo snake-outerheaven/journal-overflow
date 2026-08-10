@@ -45,9 +45,9 @@ main (void)
       if (!fgets (buf, sizeof buf, stdin))
         break;
 
-      for (x = 0; x < ARR_SIZE (YES); ++x)
-        if (strcmp (buf, YES[x]) == 0)
-          break;
+      for (x = 0; x < (int)ARR_SIZE (YES); ++x)
+        if (strcmp (buf, YES[x]))
+          exit(0);
     }
 
   return 0;
