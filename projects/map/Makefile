@@ -1,27 +1,25 @@
-CC = gcc CFLAGS
-    = -Wall - Wextra - std = c11 - fPIC LIB_SRC = map.c utils.c LIB_OBJ
-    = $ (LIB_SRC :.c =.o) LIB_TARGET = libmap.so TARGET = grocery_app.out
+CC = cl.exe
+CFLAGS = /W4 /std:c11 /nologo
+LIB_SRC = map.c utils.c
+LIB_OBJ = map.obj utils.obj
+LIB_TARGET = map.lib
+TARGET = grocery_app.exe
 
-                                                              all
-    : $ (LIB_TARGET) $ (TARGET)
+all: $(LIB_TARGET) $(TARGET)
 
-          $ (LIB_TARGET)
-    : $ (LIB_OBJ) $ (CC) - shared
-                                                          - o $ @$ (LIB_OBJ)
+$(LIB_TARGET): $(LIB_OBJ)
+	lib /out:$@ $**
 
-                                                                $ (TARGET)
-    : main.o $ (LIB_TARGET) $ (CC)
-          $ (CFLAGS) - o $ (TARGET) main.o - L.- lmap - Wl,
-                       -rpath, .
+$(TARGET): main.obj $(LIB_TARGET)
+	$(CC) $(CFLAGS) /Fe$@ main.obj /link $(LIB_TARGET)
 
-                                           run
-    : all./ $ (TARGET)
+run: all
+	.\$(TARGET)
 
-                                           %.o
-    : %.c $ (CC) $ (CFLAGS) - c $ < -o $ @
+.c.obj:
+	$(CC) $(CFLAGS) /c $<
 
-                                        clean : rm
-                                        - f
-                                              *.o $ (TARGET) $ (LIB_TARGET)
+clean:
+	del /Q *.obj $(TARGET) $(LIB_TARGET)
 
-                                                   .PHONY : all clean run
+.PHONY: all clean run
