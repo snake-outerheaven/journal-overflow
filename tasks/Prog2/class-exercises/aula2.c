@@ -26,7 +26,7 @@ main (void)
     {
       num = (rand () % (sup - inf + 1)) + inf;
 
-      for (x = (i - 1); x > 0 && !achei; x--)
+      for (x = (i - 1); x >= 0 && !achei; x--)
         if (num == cartela[x])
           achei = 1;
 
