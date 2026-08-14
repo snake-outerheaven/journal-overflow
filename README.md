@@ -1,6 +1,6 @@
 # Journal Overflow
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 [![Linguagem: C](https://img.shields.io/badge/C-100%25-blue?logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
 
 **Repositório de estudos.**
@@ -60,4 +60,4 @@ gcc -o output_filename input_file.c
 
 ## Licença
 
-Este projeto está licenciado sob os termos da [GNU GPL v3](LICENSE).
+Este projeto está licenciado sob os termos da [MIT License](LICENSE).
