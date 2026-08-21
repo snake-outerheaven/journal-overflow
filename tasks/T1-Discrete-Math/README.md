@@ -34,10 +34,30 @@ com progressões aritméticas.
 ## Pendências
 
 - [ ] Implementar o menu interativo da aplicação.
-- [ ] Implementar a interpolação de `k` números em uma P.A.
+- [x] Implementar a interpolação de `k` números em uma P.A.
 - [ ] Implementar a geração de uma P.A. de segunda ordem a partir de 8 termos.
 
 ### Entrega
 
 - Validar as funcionalidades antes da entrega.
 - Enviar o trabalho concluído pelo AVA.
+
+### Compilação
+
+No Linux ou com GNU Make no Windows:
+
+```sh
+make test
+make run
+```
+
+No prompt de ferramentas do Visual Studio, usando `nmake`:
+
+```bat
+nmake /f Makefile.win test
+nmake /f Makefile.win run
+```
+
+O `Makefile` identifica Windows pela variável `OS=Windows_NT` e ajusta as
+bibliotecas, extensões dos executáveis e comandos de execução. O
+`Makefile.win` é específico do `nmake` e usa `cl.exe`.

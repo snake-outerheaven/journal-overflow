@@ -1,0 +1,39 @@
+CC = cl
+CFLAGS = /nologo /W4 /WX /std:c11
+TARGET = pa.exe
+TEST_TARGET = tests\test_pa.exe
+
+all: app
+
+app: src\main.obj pa.lib utils.lib
+	$(CC) $(CFLAGS) src\main.obj pa.lib utils.lib /Fe:$(TARGET)
+
+run: app
+	$(TARGET)
+
+pa.lib: src\pa.obj
+	$(CC) /nologo /LD src\pa.obj /Fe:pa.dll
+
+utils.lib: src\utils.obj
+	$(CC) /nologo /LD src\utils.obj /Fe:utils.dll
+
+src\pa.obj: src\pa.c src\pa.h
+	$(CC) $(CFLAGS) /DPA_BUILD_DLL /c src\pa.c /Fo:src\pa.obj
+
+src\utils.obj: src\utils.c src\utils.h
+	$(CC) $(CFLAGS) /DUTILS_BUILD_DLL /c src\utils.c /Fo:src\utils.obj
+
+src\main.obj: src\main.c src\pa.h src\utils.h
+	$(CC) $(CFLAGS) /I src /c src\main.c /Fo:src\main.obj
+
+test: $(TEST_TARGET)
+	$(TEST_TARGET)
+
+$(TEST_TARGET): tests\test_pa.obj pa.lib
+	$(CC) $(CFLAGS) tests\test_pa.obj pa.lib /Fe:$(TEST_TARGET)
+
+tests\test_pa.obj: tests\test_pa.c src\pa.h
+	$(CC) $(CFLAGS) /I src /c tests\test_pa.c /Fo:tests\test_pa.obj
+
+clean:
+	-del /Q src\*.obj tests\*.obj *.dll *.lib *.exp *.exe tests\*.exe

@@ -1,9 +1,20 @@
 #ifndef PA_H
 #define PA_H
 
-// função para calcular o enésimo termo de uma progressão aritmética.
-int pa_termo (int a1, int n, int r);
+#if defined(PA_BUILD_DLL)
+#define PA_API __declspec (dllexport)
+#elif defined(_WIN32)
+#define PA_API __declspec (dllimport)
+#else
+#define PA_API
+#endif
 
-int pa_soma (int a1, int an, int r);
+// função para calcular o enésimo termo de uma progressão aritmética.
+PA_API int pa_termo (int a1, int n, int r);
+
+PA_API int pa_soma (int a1, int an, int r);
+
+// Interpola k termos inteiros entre dois termos de uma P.A.
+PA_API int pa_interpolar (int primeiro, int ultimo, int k, int interpolados[]);
 
 #endif

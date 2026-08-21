@@ -1,10 +1,29 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -std=c11 -Werror -pedantic
-PICFLAGS = -fPIC
-LIBRARY = libpa.so
-UTILS_LIBRARY = libutils.so
-TARGET = pa
-TEST_TARGET = tests/test_pa
+CC ?= gcc
+
+ifeq ($(OS),Windows_NT)
+	CFLAGS ?= -Wall -Wextra -std=c11 -Werror -pedantic
+	PICFLAGS =
+	LIBRARY = libpa.dll
+	UTILS_LIBRARY = libutils.dll
+	TARGET = pa.exe
+	TEST_TARGET = tests/test_pa.exe
+	RUNTIME_PATH =
+	RM = del /Q
+	RUN =
+else
+	CFLAGS ?= -Wall -Wextra -std=c11 -Werror -pedantic
+	PICFLAGS = -fPIC
+	LIBRARY = libpa.so
+	UTILS_LIBRARY = libutils.so
+	TARGET = pa
+	TEST_TARGET = tests/test_pa
+	RUNTIME_PATH = -Wl,-rpath,'$$ORIGIN'
+	RM = rm -f
+	RUN = ./
+endif
+
+PA_CFLAGS = $(CFLAGS) -DPA_BUILD_DLL
+UTILS_CFLAGS = $(CFLAGS) -DUTILS_BUILD_DLL
 
 PA_OBJECT = src/pa.o
 UTILS_OBJECT = src/utils.o
@@ -22,30 +41,28 @@ $(UTILS_LIBRARY): $(UTILS_OBJECT)
 	$(CC) -shared $^ -o $@
 
 app: $(MAIN_OBJECT) $(LIBRARY) $(UTILS_LIBRARY)
-	$(CC) $(CFLAGS) $(MAIN_OBJECT) -L. -lpa -lutils -Wl,-rpath,'$$ORIGIN' -o $(TARGET)
+	$(CC) $(CFLAGS) $(MAIN_OBJECT) -L. -lpa -lutils $(RUNTIME_PATH) -o $(TARGET)
 
 src/pa.o: src/pa.c src/pa.h
-	$(CC) $(CFLAGS) $(PICFLAGS) -c $< -o $@
+	$(CC) $(PA_CFLAGS) $(PICFLAGS) -c $< -o $@
 
 src/utils.o: src/utils.c src/utils.h
-	$(CC) $(CFLAGS) $(PICFLAGS) -c $< -o $@
+	$(CC) $(UTILS_CFLAGS) $(PICFLAGS) -c $< -o $@
 
 src/main.o: src/main.c src/pa.h src/utils.h
 	$(CC) $(CFLAGS) -Isrc -c $< -o $@
 
 run: app
-	./$(TARGET)
+	$(RUN)$(TARGET)
 
 test: $(TEST_TARGET)
-	./$(TEST_TARGET)
+	$(RUN)$(TEST_TARGET)
 
 $(TEST_TARGET): $(TEST_OBJECT) $(LIBRARY)
-	$(CC) $(CFLAGS) $(TEST_OBJECT) -L. -lpa -Wl,-rpath,'$$ORIGIN/..' -o $@
+	$(CC) $(CFLAGS) $(TEST_OBJECT) -L. -lpa $(RUNTIME_PATH) -o $@
 
 tests/test_pa.o: tests/test_pa.c src/pa.h
 	$(CC) $(CFLAGS) -Isrc -c $< -o $@
 
 clean:
-	rm -f $(MAIN_OBJECT) $(PA_OBJECT) $(UTILS_OBJECT) $(TEST_OBJECT)
-	rm -f $(LIBRARY) $(UTILS_LIBRARY) $(TARGET) $(TEST_TARGET)
-	rm -f src/libpa.a src/libpa.so src/pa
+	$(RM) $(MAIN_OBJECT) $(PA_OBJECT) $(UTILS_OBJECT) $(TEST_OBJECT) $(LIBRARY) $(UTILS_LIBRARY) $(TARGET) $(TEST_TARGET)
