@@ -33,15 +33,21 @@ static void
 executar_termo (void)
 {
   int primeiro;
-  int quantidade;
+  int indice;
   int razao;
 
-  if (!ler_inteiro ("Primeiro termo: ", &primeiro)
-      || !ler_inteiro ("Quantidade de termos: ", &quantidade)
+  if (!ler_inteiro ("Primeiro termo (a1): ", &primeiro)
+      || !ler_inteiro ("Indice do termo (n): ", &indice)
       || !ler_inteiro ("Razao: ", &razao))
     return;
 
-  printf ("Enesimo termo: %d\n", pa_termo (primeiro, quantidade, razao));
+  if (indice < 1)
+    {
+      printf ("O indice n deve ser positivo.\n");
+      return;
+    }
+
+  printf ("Enesimo termo: %d\n", pa_termo (primeiro, indice, razao));
 }
 
 static void
