@@ -105,12 +105,65 @@ executar_interpolacao (void)
 }
 
 static void
+executar_ordem (void)
+{
+  int ordem;
+  int quantidade;
+  int *iniciais;
+  int *resultado;
+
+  if (!ler_inteiro ("Ordem da P.A.: ", &ordem)
+      || !ler_inteiro ("Quantidade total de termos: ", &quantidade))
+    return;
+
+  if (ordem < 1 || quantidade < 1 || ordem >= quantidade)
+    {
+      printf ("A quantidade deve ser maior que a ordem.\n");
+      return;
+    }
+
+  iniciais = malloc ((size_t)(ordem + 1) * sizeof (*iniciais));
+  resultado = malloc ((size_t)quantidade * sizeof (*resultado));
+  if (iniciais == NULL || resultado == NULL)
+    {
+      printf ("Nao foi possivel alocar memoria.\n");
+      free (iniciais);
+      free (resultado);
+      return;
+    }
+
+  printf ("Digite os %d termos iniciais.\n", ordem + 1);
+  for (int indice = 0; indice <= ordem; indice++)
+    if (!ler_inteiro ("Termo: ", &iniciais[indice]))
+      {
+        free (iniciais);
+        free (resultado);
+        return;
+      }
+
+  if (pa_gerar_ordem (iniciais, ordem, quantidade, resultado))
+    {
+      printf ("Progressao:");
+      for (int indice = 0; indice < quantidade; indice++)
+        printf (" %d", resultado[indice]);
+      printf ("\n");
+    }
+  else
+    printf ("Nao foi possivel gerar a progressao: overflow ou parametros "
+            "invalidos.\n");
+
+  free (iniciais);
+  free (resultado);
+}
+
+static void
 exibir_menu (void)
 {
   printf ("\n=== Progressao Aritmetica ===\n");
   printf ("1. Calcular o enesimo termo\n");
   printf ("2. Calcular a soma dos termos\n");
   printf ("3. Interpolar termos\n");
+  printf ("4. Gerar P.A. de ordem n\n");
   printf ("0. Sair\n");
 }
 
@@ -137,6 +190,9 @@ menu_executar (void)
           break;
         case 3:
           executar_interpolacao ();
+          break;
+        case 4:
+          executar_ordem ();
           break;
         default:
           printf ("Opcao invalida.\n");

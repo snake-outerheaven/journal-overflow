@@ -17,4 +17,8 @@ PA_API int pa_soma (int a1, int an, int r);
 // Interpola k termos inteiros entre dois termos de uma P.A.
 PA_API int pa_interpolar (int primeiro, int ultimo, int k, int interpolados[]);
 
+// Gera uma P.A. de ordem n a partir de n + 1 termos iniciais.
+PA_API int pa_gerar_ordem (const int iniciais[], int ordem, int quantidade,
+                           int resultado[]);
+
 #endif

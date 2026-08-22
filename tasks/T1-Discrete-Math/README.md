@@ -10,8 +10,8 @@ com progressões aritméticas.
 - Calcular o enésimo termo de uma progressão aritmética (P.A.).
 - Calcular a soma de `n` termos de uma P.A.
 - Interpolar `k` números entre dois termos de uma P.A.
-- Gerar uma progressão aritmética de segunda ordem a partir de uma sequência
-	original com 8 termos armazenados em um vetor.
+- Gerar uma progressão aritmética de ordem `n` a partir de `n + 1` termos
+	iniciais.
 
 ### Interface e organização
 
@@ -24,6 +24,7 @@ com progressões aritméticas.
 
 - [x] Função `pa_termo` para calcular o enésimo termo de uma P.A.
 - [x] Função `pa_soma` para calcular a soma de `n` termos de uma P.A.
+- [x] Função `pa_gerar_ordem` para gerar uma P.A. de ordem `n`.
 - [x] Header `pa.h` com a interface das funções de P.A.
 - [x] Testes das funções usando a biblioteca `assert`.
 - [x] Geração da biblioteca compartilhada `libpa.so`.
@@ -32,7 +33,7 @@ com progressões aritméticas.
 
 - [x] Implementar o menu interativo da aplicação.
 - [x] Implementar a interpolação de `k` números em uma P.A.
-- [ ] Implementar a geração de uma P.A. de segunda ordem a partir de 8 termos.
+- [x] Implementar a geração de uma P.A. de ordem `n` a partir dos termos iniciais.
 - [ ] Criar um pacote de números aleatórios para gerar casos de teste e verificar a eficácia das funções matemáticas.
 
 ### Entrega
