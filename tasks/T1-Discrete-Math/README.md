@@ -18,7 +18,7 @@ com progressões aritméticas.
 - Disponibilizar um menu para o usuário escolher a operação desejada.
 - Implementar cada operação em uma função específica sempre que necessário.
 - Separar a lógica matemática da entrada e saída do programa.
-- Compilar e executar o projeto por meio de um `Makefile`.
+- Compilar, testar e executar o projeto por meio do CMake.
 
 ## Entregáveis implementados
 
@@ -27,7 +27,7 @@ com progressões aritméticas.
 - [x] Função `pa_gerar_ordem` para gerar uma P.A. de ordem `n`.
 - [x] Header `pa.h` com a interface das funções de P.A.
 - [x] Testes das funções usando a biblioteca `assert`.
-- [x] Geração da biblioteca compartilhada `libpa.so`.
+- [x] Geração da biblioteca compartilhada da P.A.
 
 ## Pendências
 
@@ -43,20 +43,29 @@ com progressões aritméticas.
 
 ### Compilação
 
-No Linux ou com GNU Make no Windows:
+Configure o projeto a partir da pasta `T1-Discrete-Math`:
 
 ```sh
-make test
-make run
+cmake -S . -B build -DBUILD_TESTING=ON
 ```
 
-No prompt de ferramentas do Visual Studio, usando `nmake`:
+Compile o projeto:
 
-```bat
-nmake /f Makefile.win test
-nmake /f Makefile.win run
+```sh
+cmake --build build
 ```
 
-O `Makefile` identifica Windows pela variável `OS=Windows_NT` e ajusta as
-bibliotecas, extensões dos executáveis e comandos de execução. O
-`Makefile.win` é específico do `nmake` e usa `cl.exe`.
+Execute os testes:
+
+```sh
+ctest --test-dir build --output-on-failure
+```
+
+Execute a aplicação compilada:
+
+```sh
+./build/pa
+```
+
+No Windows, o executável pode ser encontrado em `build/Debug/pa.exe` quando
+o gerador do CMake utiliza configurações Debug/Release.
