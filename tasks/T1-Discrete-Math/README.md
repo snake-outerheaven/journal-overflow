@@ -25,17 +25,15 @@ com progressões aritméticas.
 - [x] Função `pa_termo` para calcular o enésimo termo de uma P.A.
 - [x] Função `pa_soma` para calcular a soma de `n` termos de uma P.A.
 - [x] Header `pa.h` com a interface das funções de P.A.
-- [x] Pacote `utils` com header e implementação próprios.
-- [x] Inicialização do gerador pseudoaleatório com `srand` e `time`.
-- [x] Função para gerar números naturais positivos no intervalo `[1, limite]`.
 - [x] Testes das funções usando a biblioteca `assert`.
-- [x] Geração das bibliotecas compartilhadas `libpa.so` e `libutils.so`.
+- [x] Geração da biblioteca compartilhada `libpa.so`.
 
 ## Pendências
 
-- [ ] Implementar o menu interativo da aplicação.
+- [x] Implementar o menu interativo da aplicação.
 - [x] Implementar a interpolação de `k` números em uma P.A.
 - [ ] Implementar a geração de uma P.A. de segunda ordem a partir de 8 termos.
+- [ ] Criar um pacote de números aleatórios para gerar casos de teste e verificar a eficácia das funções matemáticas.
 
 ### Entrega
 
