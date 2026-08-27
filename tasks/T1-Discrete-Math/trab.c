@@ -10,15 +10,22 @@
 */
 
 #include <locale.h>
+#include <math.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
+#define ARR_SIZE(arr)                                                         \
+  (sizeof (arr)) / sizeof (arr[0]) // função macro para obter tamanho de vetor
+                                   // de qualquer tipo muito facilmente.
+
 // utilidades
 void limpar_input (void);
 void limpar_tela (void);
 void wait (int ms);
+void print_vec (float arr[], size_t siz);
+void skip (int ln);
 
 // funções que cumprem os casos de uso da aplicação definida no trabalho
 float pa (float a1, float r, int n);
@@ -39,6 +46,10 @@ main (void)
   float a1, r;
   int n;
   float result;
+
+  float seq[8];
+
+  float last_r, new_r;
 
   setlocale (LC_ALL, "pt_BR.UTF-8");
 
@@ -141,9 +152,7 @@ main (void)
               printf ("Sequência gerada: %.2f", a1);
 
               for (int i = 1; i <= (n - 2); i++)
-                {
-                  printf (" -> %.2f", a1 + (i * r_interp));
-                }
+                printf (" -> %.2f", a1 + (i * r_interp));
 
               printf (" -> %.2f\n", an);
 
@@ -152,8 +161,69 @@ main (void)
             }
           break;
         case 4:
-          printf ("Ainda não implementado!\n");
-          wait (3000);
+          while (1)
+            {
+              for (int i = 0; i < 8; i++)
+                while (1)
+                  {
+                    printf ("Digite o %d termo da PA de 1ª ordem: ", i + 1);
+                    if (scanf ("%f", &seq[i]) != 1)
+                      {
+                        fprintf (stderr,
+                                 "Input não corresponde ao esperado, tente "
+                                 "novamente (digite um número real)\n");
+                        wait (7.5e2);
+                        continue;
+                      }
+                    break;
+                  }
+
+              print_vec (seq, ARR_SIZE (seq));
+
+              float old_r = seq[1] - seq[0];
+              float r2_ref;
+              int valido = 1;
+
+              for (int i = 2; i < 8; i++)
+                {
+                  float new_r = seq[i] - seq[i - 1];
+                  float r2 = new_r - old_r;
+
+                  if (i == 2)
+                    r2_ref = r2;
+                  else if (fabs (r2 - r2_ref) > 1e-3)
+                    {
+                      valido = 0;
+                      break;
+                    }
+
+                  old_r = new_r;
+                }
+
+              if (!valido)
+                {
+                  limpar_tela ();
+                  printf ("A sequência não é válida, digite novamente!\n");
+                  continue;
+                }
+
+              float p_termo_pa2 = seq[1] - seq[0];
+
+              printf ("%.2f", p_termo_pa2);
+
+              for (int i = 2; i < 7; i++)
+                printf (" %.2f -> ", pa (p_termo_pa2, r2_ref, i));
+
+              printf ("%.2f", pa (p_termo_pa2, r2_ref, 7));
+
+              skip (2);
+
+              printf ("P.A de 2ª ordem gerada corretamente!\n");
+
+              wait (1e4);
+
+              break;
+            }
           break;
         case 5:
           limpar_tela ();
@@ -226,4 +296,21 @@ limpar_input (void)
   int c;
   while ((c = getchar ()) != '\n' && c != EOF)
     ;
+}
+
+void
+print_vec (float arr[], size_t siz)
+{
+  for (int i = 0; i < (siz - 1); i++)
+    printf ("%.2f -> ", arr[i]);
+
+  printf ("%.2f", arr[siz - 1]);
+  skip (1);
+}
+
+void
+skip (int ln)
+{
+  for (int i = 0; i < ln; i++)
+    putchar ('\n');
 }
