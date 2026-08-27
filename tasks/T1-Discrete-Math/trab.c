@@ -147,12 +147,13 @@ main (void)
 
               printf (" -> %.2f\n", an);
 
-              wait (4000);
+              wait (1e4);
               break;
             }
           break;
         case 4:
           printf ("Ainda não implementado!\n");
+          wait (3000);
           break;
         case 5:
           limpar_tela ();
@@ -184,7 +185,7 @@ sum_pa (float a1, float r, int n)
 float
 interpol (float a1, float an, int n)
 {
-  return (an - a1) / (n - 1)
+  return (an - a1) / (n - 1);
 }
 
 #ifdef _WIN32
