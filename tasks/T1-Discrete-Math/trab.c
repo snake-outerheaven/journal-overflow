@@ -207,7 +207,7 @@ main (void)
 
               float p_termo_pa2 = seq[1] - seq[0];
 
-              printf ("%.2f", p_termo_pa2);
+              printf ("%.2f ->", p_termo_pa2);
 
               for (int i = 2; i < 7; i++)
                 printf (" %.2f -> ", pa (p_termo_pa2, r2_ref, i));
