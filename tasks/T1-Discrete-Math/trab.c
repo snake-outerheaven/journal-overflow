@@ -49,8 +49,6 @@ main (void)
 
   float seq[8];
 
-  float last_r, new_r;
-
   setlocale (LC_ALL, "pt_BR.UTF-8");
 
   while (1)
@@ -142,7 +140,7 @@ main (void)
                   continue;
                 }
 
-              r_interp = (an - a1) / (n - 1);
+              r_interp = interpol (a1, an, n);
 
               printf ("Foram interpolados %d meios aritméticos com sucesso!\n",
                       n - 2);
