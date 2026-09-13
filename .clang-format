@@ -1,8 +1,33 @@
----
-BasedOnStyle: GNU
-IndentWidth: 2
-BreakBeforeBraces: GNU
-AllowShortFunctionsOnASingleLine: None
-KeepEmptyLinesAtTheStartOfBlocks: false
-ColumnLimit: 79
----
+Language: Cpp
+BasedOnStyle: Microsoft
+IndentWidth: 4
+ContinuationIndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+BreakBeforeBraces: Allman
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: Always
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  BeforeCatch: true
+  BeforeElse: true
+  IndentBraces: false
+  SplitEmptyFunction: true
+
+SpaceBeforeParens: ControlStatements
+SpaceAfterCStyleCast: true
+ColumnLimit: 120
+AlignAfterOpenBracket: Align
+AlwaysBreakAfterReturnType: None
+BreakBeforeBinaryOperators: None
+BreakBeforeTernaryOperators: true
+BinPackArguments: true
+BinPackParameters: true
+PointerAlignment: Right
+SortIncludes: true
+Standard: c89
