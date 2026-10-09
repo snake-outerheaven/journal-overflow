@@ -1,0 +1,13 @@
+CREATE TABLE users (id INT, name TEXT, age INT);
+INSERT INTO users VALUES (1, 'ana', 31);
+INSERT INTO users VALUES (2, 'bruno', 25);
+INSERT INTO users VALUES (3, 'it''s; carla', 40);
+SELECT * FROM users;
+SELECT name, age FROM users WHERE age >= 30;
+SELECT * FROM users WHERE name = 'bruno';
+DELETE FROM users WHERE id = 2;
+SELECT * FROM users;
+SELECT * FROM missing;
+INSERT INTO users VALUES (4, 5, 'x');
+SELECT * FROM users WHERE age = 'x';
+SELEC * FROM users;
