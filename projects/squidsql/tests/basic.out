@@ -1,0 +1,29 @@
+table users created
+1 row inserted
+1 row inserted
+1 row inserted
+ id | name        | age
+----+-------------+-----
+ 1  | ana         | 31 
+ 2  | bruno       | 25 
+ 3  | it's; carla | 40 
+(3 rows)
+ name        | age
+-------------+-----
+ ana         | 31 
+ it's; carla | 40 
+(2 rows)
+ id | name  | age
+----+-------+-----
+ 2  | bruno | 25 
+(1 row)
+1 row(s) deleted
+ id | name        | age
+----+-------------+-----
+ 1  | ana         | 31 
+ 3  | it's; carla | 40 
+(2 rows)
+error: no such table: missing
+error: type mismatch: column name is TEXT
+error: type mismatch: column age is INT
+error: syntax error: expected CREATE, INSERT, SELECT or DELETE near 'selec'

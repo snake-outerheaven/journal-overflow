@@ -1,0 +1,39 @@
+# Doxygen configuration for squidsql. Run `doxygen Doxyfile` in this folder.
+# Only the options that differ from the defaults are listed.
+
+PROJECT_NAME           = "squidsql"
+PROJECT_NUMBER         = 0.2
+PROJECT_BRIEF          = "A tiny disk-backed SQL database in C11"
+OUTPUT_DIRECTORY       = docs/api
+OUTPUT_LANGUAGE        = English
+
+# Source: the C files plus the Diataxis pages
+INPUT                  = squid.h lexer.h lexer.c parser.h parser.c db.h db.c main.c \
+                         hal.h hal_win32.c hal_posix.c arena.h arena.c rbtree.h rbtree.c \
+                         tests/test_storage.c docs
+FILE_PATTERNS          = *.c *.h *.md
+RECURSIVE              = YES
+EXCLUDE                = docs/api
+USE_MDFILE_AS_MAINPAGE = docs/index.md
+MARKDOWN_SUPPORT       = YES
+
+# C11 project
+OPTIMIZE_OUTPUT_FOR_C  = YES
+PREDEFINED             = _WIN32
+EXTRACT_ALL            = NO
+EXTRACT_STATIC         = YES
+JAVADOC_AUTOBRIEF      = NO
+SOURCE_BROWSER         = YES
+CALL_GRAPH             = NO
+HAVE_DOT               = NO
+
+# Documentation must stay complete: any warning fails the build
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+WARN_AS_ERROR          = FAIL_ON_WARNINGS
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+QUIET                  = YES
