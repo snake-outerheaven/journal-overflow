@@ -2,8 +2,10 @@
  * @file main.c
  * @brief Command-line front end: interactive REPL and script runner.
  *
- * Reads statements from stdin (interactive) or from a script file given as
- * the first argument. A statement ends at the first `;` outside a string.
+ * Usage: `squidsql [database [script.sql]]`. The database is a file (default
+ * `squid.db`, created if missing). Statements are read from the script if
+ * given, otherwise from stdin (interactive). A statement ends at the first
+ * `;` outside a string.
  */
 
 #include <stdio.h>
@@ -74,7 +76,7 @@ static void run_statement(db *d, const char *sql)
 }
 
 /**
- * @brief Handles a dot-command (`.tables`, `.help`, `.quit`, `.exit`).
+ * @brief Handles a dot-command (`.tables`, `.sync on|off`, `.help`, `.quit`, `.exit`).
  * @param d    Database, for `.tables`.
  * @param line The input line, starting with `.`.
  * @return Non-zero if the REPL should quit.
@@ -89,6 +91,10 @@ static int meta_command(db *d, const char *line)
     {
         db_list_tables(d, stdout);
     }
+    else if (strncmp(line, ".sync on", 8) == 0 || strncmp(line, ".sync off", 9) == 0)
+    {
+        db_set_sync(d, line[6] == 'o' && line[7] == 'n');
+    }
     else if (strncmp(line, ".help", 5) == 0)
     {
         printf("statements end with ';'\n"
@@ -96,7 +102,7 @@ static int meta_command(db *d, const char *line)
                "  INSERT INTO t VALUES (1, 'x');\n"
                "  SELECT * | col, ... FROM t [WHERE col op literal];\n"
                "  DELETE FROM t [WHERE col op literal];\n"
-               "commands: .tables  .help  .quit\n");
+               "commands: .tables  .sync on|off  .help  .quit\n");
     }
     else
     {
@@ -173,31 +179,46 @@ static void repl(db *d, FILE *in, int interactive)
 /**
  * @brief Program entry point.
  * @param argc Argument count.
- * @param argv Optional first argument: a script file to run instead of stdin.
- * @return 0 on success, 1 if the script file cannot be opened.
+ * @param argv Optional: the database file, then a script file to run instead
+ *             of reading stdin.
+ * @return 0 on success, 1 if the database or the script cannot be opened.
  */
 int main(int argc, char **argv)
 {
-    db d;
+    const char *path = argc > 1 ? argv[1] : "squid.db";
+    char err[SQ_ERR_MAX];
     FILE *in = stdin;
+    db d;
 
-    if (argc > 1)
+    if (argc > 2)
     {
-        in = fopen(argv[1], "r");
+        in = fopen(argv[2], "r");
         if (!in)
         {
-            fprintf(stderr, "squidsql: cannot open %s\n", argv[1]);
+            fprintf(stderr, "squidsql: cannot open %s\n", argv[2]);
             return 1;
         }
     }
 
-    db_init(&d);
+    if (db_open(&d, path, err))
+    {
+        fprintf(stderr, "squidsql: %s: %s\n", path, err);
+        if (in != stdin)
+        {
+            fclose(in);
+        }
+        return 1;
+    }
+    if (db_was_unclean(&d))
+    {
+        fprintf(stderr, "warning: %s was not closed cleanly; its data may be damaged\n", path);
+    }
     if (in == stdin)
     {
-        printf("squidsql 0.1 - type .help for help\n");
+        printf("squidsql 0.2 - database: %s - type .help for help\n", path);
     }
     repl(&d, in, in == stdin);
-    db_free(&d);
+    db_close(&d);
 
     if (in != stdin)
     {

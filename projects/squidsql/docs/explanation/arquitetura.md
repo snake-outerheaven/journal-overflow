@@ -1,20 +1,24 @@
 # Arquitetura
 
-Um comando SQL passa por quatro etapas, cada uma em seu módulo:
+Um comando SQL passa por quatro etapas; a última grava no armazenamento em disco.
 
-    texto --lexer--> tokens --parser--> stmt --db_exec--> resultado impresso
+    texto --lexer--> tokens --parser--> stmt --db_exec--> armazenamento
 
-| arquivo      | papel                                                             |
-| ------------ | ----------------------------------------------------------------- |
-| `squid.h`    | tipos compartilhados (`value`, `stmt`, `predicate`) e limites `SQ_*` |
-| `lexer.c/h`  | converte texto em `token`s, um por chamada de `lex_next`          |
-| `parser.c/h` | descida recursiva; `parse()` preenche um `stmt`                   |
-| `db.c/h`     | tabelas em memória e execução (`db_exec`)                         |
-| `main.c`     | REPL, leitura de scripts, divisão por `;`, comandos com ponto     |
+| arquivo        | papel                                                             |
+| -------------- | ----------------------------------------------------------------- |
+| `squid.h`      | tipos compartilhados (`value`, `stmt`, `predicate`) e limites `SQ_*` |
+| `lexer.c/h`    | converte texto em `token`s, um por chamada de `lex_next`          |
+| `parser.c/h`   | descida recursiva; `parse()` preenche um `stmt`                   |
+| `db.c/h`       | tabelas e linhas sobre o armazenamento; execução (`db_exec`)      |
+| `rbtree.c/h`   | árvore rubro-negra cujos nós vivem no arquivo                     |
+| `arena.c/h`    | alocador de blocos dentro do arquivo mapeado                      |
+| `hal.h`, `hal_win32.c`, `hal_posix.c` | arquivo mapeado em memória, por sistema operacional |
+| `main.c`       | REPL, leitura de scripts, divisão por `;`, comandos com ponto     |
 
-Os módulos só se conhecem através de `squid.h`: o parser não sabe nada do
-banco, e o banco não sabe nada de tokens. Os detalhes de cada função estão na
-referência da API gerada pelo Doxygen.
+As dependências vão em uma só direção: `main` → `db` → `rbtree` → `arena` →
+`hal`. O parser só conhece `squid.h`: não sabe nada do banco, e o banco não sabe
+nada de tokens. O detalhe do armazenamento está em
+[Armazenamento em disco](armazenamento.md).
 
 ## O `stmt`
 
@@ -45,11 +49,16 @@ verificações que dependem do catálogo (a tabela existe? os tipos batem?) fica
 aqui. O `WHERE` é resolvido uma vez por `bind_where`, antes do laço sobre as
 linhas.
 
-As linhas de uma tabela ficam num vetor de `value` em ordem de linha
-(`rows[linha * ncols + coluna]`), que dobra de tamanho quando enche.
+- O **catálogo** é uma árvore rubro-negra ordenada pelo nome da tabela.
+- Cada tabela tem uma árvore de **linhas** ordenada por id crescente.
+- Uma linha é um registro compacto, decodificado para `value[]` quando lida.
+
+`INSERT` e `DELETE` mexem só nas árvores e no alocador; `SELECT` percorre a
+árvore em ordem. Qualquer `WHERE` é uma varredura completa.
 
 ## Convenção de erros
 
 Funções que podem falhar devolvem `0` em sucesso e diferente de zero em erro, e
 escrevem a mensagem num `char err[SQ_ERR_MAX]` recebido por parâmetro. Não há
-variáveis globais de erro.
+variáveis globais de erro. As funções de armazenamento que não têm como
+descrever o erro (como `arena_alloc`) devolvem `0` e quem chama monta a mensagem.

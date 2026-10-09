@@ -46,7 +46,7 @@ typedef struct
 {
     tk_type type;           /**< Category of the token. */
     char text[SQ_TEXT_MAX]; /**< Spelling; identifiers are lowercased. */
-    long num;               /**< Numeric value of a ::TK_INT_LIT. */
+    int64_t num;            /**< Numeric value of a ::TK_INT_LIT. */
 } token;
 
 /** Cursor over the SQL text being tokenized. */

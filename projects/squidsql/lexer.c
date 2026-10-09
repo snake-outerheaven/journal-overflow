@@ -91,7 +91,7 @@ static void lex_word(lexer *lx, token *t)
  * @brief Reads an integer literal with an optional leading `-`.
  * @param lx Lexer positioned on a digit, or on a `-` followed by a digit.
  * @param t  Receives a ::TK_INT_LIT, or a ::TK_ERROR if the value overflows
- *           a `long` or has too many digits.
+ *           64 bits or has too many digits.
  */
 static void lex_number(lexer *lx, token *t)
 {
@@ -116,7 +116,7 @@ static void lex_number(lexer *lx, token *t)
     t->text[n] = '\0';
 
     errno = 0;
-    t->num = strtol(t->text, &end, 10);
+    t->num = strtoll(t->text, &end, 10);
     if (errno == ERANGE)
     {
         set_error(t, "number out of range");

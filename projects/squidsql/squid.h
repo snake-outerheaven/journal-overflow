@@ -8,20 +8,22 @@
 #ifndef SQUID_H
 #define SQUID_H
 
+#include <stdint.h>
+
 /** @name Fixed limits
- * Everything is fixed-size to keep the first version simple.
+ * Names, text values and columns are fixed-size; the number of tables and
+ * rows is limited only by disk space.
  * @{ */
-#define SQ_NAME_MAX 32   /**< Bytes for a table/column name, with the NUL. */
-#define SQ_TEXT_MAX 64   /**< Bytes for a TEXT value or token, with the NUL. */
-#define SQ_MAX_COLS 8    /**< Maximum columns per table, and values per row. */
-#define SQ_MAX_TABLES 16 /**< Maximum tables in a database. */
-#define SQ_ERR_MAX 160   /**< Size of the buffer that receives error messages. */
+#define SQ_NAME_MAX 32 /**< Bytes for a table/column name, with the NUL. */
+#define SQ_TEXT_MAX 64 /**< Bytes for a TEXT value or token, with the NUL. */
+#define SQ_MAX_COLS 8  /**< Maximum columns per table, and values per row. */
+#define SQ_ERR_MAX 160 /**< Size of the buffer that receives error messages. */
 /** @} */
 
 /** Column data types. */
 typedef enum
 {
-    TYPE_INT, /**< Signed integer, stored as a `long`. */
+    TYPE_INT, /**< 64-bit signed integer. */
     TYPE_TEXT /**< Character string of at most ::SQ_TEXT_MAX - 1 bytes. */
 } coltype;
 
@@ -29,7 +31,7 @@ typedef enum
 typedef struct
 {
     coltype type;       /**< Selects which member below is meaningful. */
-    long i;             /**< The value when #type is ::TYPE_INT. */
+    int64_t i;          /**< The value when #type is ::TYPE_INT. */
     char s[SQ_TEXT_MAX]; /**< The value when #type is ::TYPE_TEXT. */
 } value;
 

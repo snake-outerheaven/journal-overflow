@@ -19,13 +19,15 @@ Entenda o fluxo antes em [Arquitetura](../explanation/arquitetura.md).
    e registre-a com um `case STMT_DROP:` em `db_exec()`. Valide o que depende do
    catálogo aqui (a tabela existe?), nunca no parser.
 
-5. **Teste.** Acrescente a `tests\basic.sql` um caso de sucesso e um de erro, e
-   confira a saída com `nmake test`.
+5. **Teste.** Acrescente a `tests\basic.sql` um caso de sucesso e um de erro,
+   atualize a saída esperada `tests\basic.out` (depois de conferir à mão que a
+   nova saída está certa) e rode `nmake test`.
 
 6. **Documentação.** Atualize [SQL suportado](../reference/sql.md), as
    [mensagens de erro](../reference/erros.md) e a gramática em
    [Arquitetura](../explanation/arquitetura.md). Cada função nova precisa de um
    bloco `/** ... */` com `@brief`, `@param` e `@return`, senão o Doxygen avisa.
 
-7. **Verifique.** Compile com clang (`-std=c89 -pedantic -Wall -Wextra`): zero
-   avisos.
+7. **Verifique.** Compile com clang (`-std=c11 -pedantic -Wall -Wextra`): zero
+   avisos. Se o comando altera dados, lembre-se de que o arquivo pode ser
+   remapeado a cada alocação: use offsets, e chame `flush` ao final.

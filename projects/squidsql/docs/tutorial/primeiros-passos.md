@@ -1,7 +1,8 @@
 # Tutorial: primeiros passos
 
 Neste tutorial você vai compilar o squidsql, criar uma tabela, inserir dados,
-consultá-los e apagá-los. Leva uns dez minutos. Você precisa do Visual Studio
+consultá-los, apagá-los e reabrir o banco para ver que os dados continuam lá.
+Leva uns dez minutos. Você precisa do Visual Studio
 com as ferramentas de C++ instaladas.
 
 ## 1. Compile
@@ -15,11 +16,11 @@ No fim aparece `squidsql.exe` na pasta. (Outras formas de compilar estão em
 
 ## 2. Abra o REPL
 
-    squidsql.exe
+    squidsql.exe aula.db
 
-Você verá:
+`aula.db` é o arquivo onde seus dados ficarão; ele é criado agora. Você verá:
 
-    squidsql 0.1 - type .help for help
+    squidsql 0.2 - database: aula.db - type .help for help
     squidsql>
 
 ## 3. Crie uma tabela
@@ -73,8 +74,19 @@ erros nunca encerram o programa.
 
     .quit
 
-Os dados **não são salvos**: ao sair, tudo some. Para repetir uma sessão,
-guarde os comandos num arquivo e rode `squidsql.exe arquivo.sql`.
+## 9. Volte depois
+
+Os dados ficaram no arquivo `aula.db`. Abra-o de novo:
+
+    squidsql.exe aula.db
+
+e consulte:
+
+    SELECT * FROM usuarios;
+
+Você verá as linhas `ana` e `carla` exatamente como as deixou. Para repetir uma
+sessão automaticamente, guarde os comandos num arquivo e rode
+`squidsql.exe aula.db arquivo.sql`.
 
 ## Próximos passos
 

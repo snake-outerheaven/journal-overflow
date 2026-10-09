@@ -18,8 +18,8 @@
 
 ### CREATE TABLE
 
-Cria uma tabela. Falha se o nome já existe, se há colunas repetidas ou se o
-banco já tem 16 tabelas. Uma tabela tem de 1 a 8 colunas.
+Cria uma tabela. Falha se o nome já existe ou se há colunas repetidas. Uma
+tabela tem de 1 a 8 colunas; o número de tabelas só é limitado pelo disco.
 
     CREATE TABLE usuarios (id INT, nome TEXT, idade INT);
 
@@ -43,7 +43,7 @@ ordena colunas.
     SELECT nome, idade FROM usuarios WHERE idade >= 30;
 
 Saída: cabeçalho, linha de traços, linhas (colunas alinhadas) e `(N rows)`.
-As linhas aparecem na ordem de inserção.
+As linhas aparecem na ordem de inserção. Um `WHERE` percorre a tabela inteira.
 
 ### DELETE
 
@@ -64,7 +64,7 @@ maiúsculas de minúsculas).
 
 | tipo   | descrição                                                |
 | ------ | -------------------------------------------------------- |
-| `INT`  | inteiro com sinal (`long`, 32 bits no Windows)           |
+| `INT`  | inteiro com sinal de 64 bits                             |
 | `TEXT` | até 63 caracteres                                        |
 
 ## Literais

@@ -25,7 +25,7 @@ sem documentação, parâmetro sem `@param` ou link quebrado faz o comando falha
 
 ## Como comentar o código
 
-Use blocos Javadoc em C89 (`/** ... */`, nunca `//`):
+Use blocos Javadoc (`/** ... */`, nunca `//`):
 
     /**
      * @brief Uma linha dizendo o que a função faz.

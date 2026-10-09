@@ -1,8 +1,9 @@
 # squidsql {#mainpage}
 
-squidsql é um banco de dados SQL minúsculo, em memória, escrito em C89. Ele
-lê um subconjunto pequeno de SQL (`CREATE TABLE`, `INSERT`, `SELECT`,
-`DELETE`) e executa os comandos num REPL ou a partir de um script.
+squidsql é um banco de dados SQL minúsculo, escrito em C11. Ele lê um
+subconjunto pequeno de SQL (`CREATE TABLE`, `INSERT`, `SELECT`, `DELETE`) e
+executa os comandos num REPL ou a partir de um script. Os dados ficam em um
+único arquivo, mapeado em memória e organizado em árvores rubro-negras.
 
 Esta documentação segue o [Diátaxis](https://diataxis.fr/): cada página tem
 um único propósito, e você escolhe pelo que precisa.
@@ -29,12 +30,14 @@ um único propósito, e você escolhe pelo que precisa.
 - [SQL suportado](reference/sql.md)
 - [Linha de comando e REPL](reference/cli.md)
 - [Mensagens de erro](reference/erros.md)
+- [Formato do arquivo de banco](reference/formato-arquivo.md)
 - API em C: gerada pelo Doxygen a partir do código-fonte (veja os arquivos
-  `squid.h`, `lexer.h`, `parser.h` e `db.h`).
+  `squid.h`, `lexer.h`, `parser.h`, `db.h`, `arena.h`, `rbtree.h` e `hal.h`).
 
 ## Explicação
 
 - [Arquitetura](explanation/arquitetura.md)
+- [Armazenamento em disco](explanation/armazenamento.md)
 - [Decisões de projeto e limitações](explanation/decisoes.md)
 
 ## Para agentes de código

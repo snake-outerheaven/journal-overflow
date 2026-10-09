@@ -33,7 +33,20 @@ Aparecem como `lexical error: <causa>`.
 | `no such column: c`                                     | a coluna não existe na tabela              |
 | `table already exists: t`                               | `CREATE TABLE` com nome em uso             |
 | `duplicate column: c`                                   | coluna repetida no `CREATE TABLE`          |
-| `too many tables (max 16)`                              | catálogo cheio                             |
 | `table t has N columns but M values were supplied`      | `INSERT` com número errado de valores      |
 | `type mismatch: column c is INT` (ou `TEXT`)            | literal de tipo diferente do da coluna     |
-| `out of memory`                                         | falha de alocação no `INSERT`              |
+| `database is full: cannot grow the file`                | o arquivo não conseguiu crescer (disco cheio) |
+| `FlushViewOfFile failed (win32 error N)` e similares    | falha ao gravar no disco após o comando    |
+
+## Ao abrir o banco
+
+Aparecem em `stderr`, no formato `squidsql: <banco>: <mensagem>`, e o programa
+encerra com código 1.
+
+| mensagem                                                | quando                                     |
+| ------------------------------------------------------- | ------------------------------------------ |
+| `cannot open database file (win32 error N)`             | caminho inválido, sem permissão, ou arquivo em uso por outro processo |
+| `database file is in use: ...`                          | (POSIX) outro processo tem o arquivo aberto |
+| `not a squidsql database file`                          | o arquivo existe mas não tem o cabeçalho do squidsql |
+| `unsupported database version N`                        | arquivo criado por outra versão do formato |
+| `database file is truncated or damaged`                 | o tamanho do arquivo não confere com o cabeçalho |

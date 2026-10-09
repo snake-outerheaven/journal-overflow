@@ -1,0 +1,15 @@
+users
+ id | name        | age
+----+-------------+-----
+ 1  | ana         | 31 
+ 3  | it's; carla | 40 
+(2 rows)
+1 row inserted
+1 row inserted
+ name        | age
+-------------+-----
+ it's; carla | 40 
+ dani        | 19 
+ max         | -5 
+(3 rows)
+error: table already exists: users
