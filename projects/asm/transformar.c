@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 
 //FUNÇÃO AUXILIAR:
 void imprime(int a, int b){
@@ -8,13 +8,21 @@ void imprime(int a, int b){
 
 
 int main(){
-	int x, y;
+	int x, y; 
+
+	x = y = 0;
 
 	printf("Digite dois numeros inteiros:\n");
 	scanf("%d%d",&x,&y);
 
+	// imprimir e ler 2 inteiros
+
 	imprime(x,y);
 
+	// criar procedimento simples sem variáveis locais
+
 	return 0;
+
+	// syscall de saida
 }
 
